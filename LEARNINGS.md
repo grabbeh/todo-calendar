@@ -1,0 +1,1 @@
+- better to include certain asset in /app/assets folder rather than public folder so you get link and easier to cache (or something)

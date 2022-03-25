@@ -1,0 +1,2 @@
+- check index has been created from DynamoDB stream
+- check search request works - currently not finding index due to above issue
