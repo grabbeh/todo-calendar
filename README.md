@@ -1,6 +1,6 @@
 # Welcome to Todo-Calendar
 
-![alt text](app-architecture.png "Title")
+![alt text](architecture.png "Title")
 
 ## Development
 
