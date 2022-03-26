@@ -47,7 +47,7 @@ const updateTodo = async (todo: Partial<Todo>) => {
 	})
 }
 
-const moveToToday = async (todo: Todo) => {
+const moveToToday = async (todo: Partial<Todo>) => {
 	const { user, id, ...values } = todo
 	const today = new Date()
 	const day = today.getDate()
@@ -57,6 +57,25 @@ const moveToToday = async (todo: Todo) => {
 		id,
 		...values,
 		date: today,
+		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
+		user
+	})
+}
+
+export interface MoveTodoProps {
+	id: string
+	year: number
+	month: number
+	day: number
+	user: string
+}
+
+const moveToDate = async ({ id, year, month, day, user }: MoveTodoProps) => {
+	console.log(day)
+	const date = new Date(year, month - 1, day)
+	return await Todo.update({
+		id,
+		date,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
 		user
 	})
@@ -196,7 +215,8 @@ export {
 	updateTodo,
 	deleteTodo,
 	getCalendarData,
-	moveToToday
+	moveToToday,
+	moveToDate
 }
 
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30]

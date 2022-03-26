@@ -1,9 +1,9 @@
 import { Link, Links, Meta, Scripts, redirect, useLoaderData } from 'remix'
 import type { LoaderFunction } from 'remix'
-import { requireUserEmail } from '../db/session.server'
+import { getUserEmail } from '../db/session.server'
 
 export const loader: LoaderFunction = async ({ request }) => {
-	let user = await requireUserEmail(request)
+	let user = await getUserEmail(request)
 	if (user) {
 		return redirect('/todos')
 	}
