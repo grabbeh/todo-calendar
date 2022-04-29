@@ -1,0 +1,64 @@
+Open Search permissions
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Action": "es:*",
+			"Resource": "arn:aws:es:eu-west-1:489398316570:domain/calendar-todo/*"
+		}
+	]
+}
+
+To enable lambda functions to access OpenSearch instance, I added a master user so that user could access the OS Dashboard. At that point, I added the ARNs for each lambda function as users
+
+Lambda to put content into OS
+
+Security policy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "es:ESHttpPost",
+              "es:ESHttpPut",
+              "dynamodb:DescribeStream",
+              "dynamodb:GetRecords",
+              "dynamodb:GetShardIterator",
+              "dynamodb:ListStreams",
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:PutLogEvents"
+          ],
+          "Resource": "*"
+      }
+  ]
+}
+
+Lambda to get data out of OS
+
+Security policy
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Sid": "VisualEditor0",
+          "Effect": "Allow",
+          "Action": [
+              "es:*",
+              "logs:CreateLogStream",
+              "es:ESHttpHead",
+              "es:ESHttpGet",
+              "logs:CreateLogGroup",
+              "logs:PutLogEvents"
+          ],
+          "Resource": "*"
+      }
+  ]
+}
