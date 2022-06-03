@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link, useFetcher } from "@remix-run/react";
+import React, { useState, useEffect } from 'react'
+import { Link, useFetcher } from '@remix-run/react'
 import mario from '../assets/mario.mp3'
 import { EditButton, MoveToToday } from '../components/icons'
 

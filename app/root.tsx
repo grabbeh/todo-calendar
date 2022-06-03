@@ -37,12 +37,10 @@ export default function App() {
 				<Links />
 			</head>
 			<body style={{ fontFamily: 'Inter' }}>
-				<React.StrictMode>
-					<Outlet />
-					<ScrollRestoration />
-					<Scripts />
-					{process.env.NODE_ENV === 'development' && <LiveReload />}
-				</React.StrictMode>
+				<Outlet />
+				<ScrollRestoration />
+				<Scripts />
+				{process.env.NODE_ENV === 'development' && <LiveReload />}
 			</body>
 		</html>
 	)

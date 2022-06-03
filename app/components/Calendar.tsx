@@ -154,7 +154,7 @@ function CalendarDrag({ current, day }: CalendarItemProps) {
 	} else if (canDrop) {
 		backgroundColor = 'bg-blue-500'
 	}
-	console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
+	//console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
 	return (
 		<div ref={drop} role='CalendarItem' className={` ${backgroundColor}`}>
 			<CalendarItem current={current} day={day} />

@@ -202,6 +202,7 @@ export default function Todos() {
 	const isAdding =
 		fetcher?.state === 'submitting' &&
 		fetcher.submission?.formData.get('_action') === 'add'
+
 	const formRef = useRef()
 
 	useEffect(() => {
@@ -283,6 +284,21 @@ export default function Todos() {
 								))
 							) : (
 								<div className='text-2xl'>Nothing to do - yipee!</div>
+							)}
+
+							{fetcher.submission?.formData.get('text') && (
+								<li className='py-1 flex text-xl md:text-2xl'>
+									<div>
+										<label className='flex'>
+											<div>
+												<input type='checkbox' />
+											</div>
+											<div className='ml-3 text-gray-800'>
+												{fetcher.submission?.formData.get('text')}
+											</div>
+										</label>
+									</div>
+								</li>
 							)}
 						</ul>
 						<div className='w-full mt-3'>
