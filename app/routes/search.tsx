@@ -1,6 +1,6 @@
 import { requireUserEmail } from '../db/session.server'
-import type { ActionFunction } from 'remix'
-import { useFetcher } from 'remix'
+import type { ActionFunction } from "@remix-run/node";
+import { useFetcher } from "@remix-run/react";
 import axios from 'axios'
 
 export const action: ActionFunction = async ({ request }) => {

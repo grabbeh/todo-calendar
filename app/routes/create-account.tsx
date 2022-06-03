@@ -1,6 +1,7 @@
-import { json, useActionData, useTransition, redirect, useFetcher } from 'remix'
+import type { ActionFunction } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import { useActionData, useFetcher, useTransition } from "@remix-run/react";
 import { useRef, useEffect } from 'react'
-import type { ActionFunction } from 'remix'
 import { register } from '../db/session.server'
 
 export interface User {

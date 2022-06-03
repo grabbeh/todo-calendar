@@ -1,15 +1,14 @@
 import { DndProvider, useDrop, useDrag } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
 import {
-	useLoaderData,
 	Link,
-	json,
-	useFetcher,
+	Outlet,
 	useActionData,
-	redirect,
-	Outlet
-} from 'remix'
-import type { ActionFunction, LoaderFunction } from 'remix'
+	useFetcher,
+	useLoaderData
+} from '@remix-run/react'
 import { useRef, useEffect } from 'react'
 import {
 	addTodo,
@@ -328,7 +327,7 @@ function Dustbin() {
 				{ id: item.id, _action: 'delete' },
 				{
 					method: 'post',
-					action: '/drag'
+					action: '/todos'
 				}
 			)
 

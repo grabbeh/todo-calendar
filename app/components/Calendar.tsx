@@ -1,7 +1,6 @@
 import { randomBg, calendarRating } from '../utils'
-import { Link, useFetcher } from 'remix'
-import { DndProvider, useDrop, useDrag } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { Link, useFetcher } from '@remix-run/react'
+import { useDrop } from 'react-dnd'
 
 export interface Day {
 	todos: TodoObject
@@ -137,10 +136,9 @@ function CalendarDrag({ current, day }: CalendarItemProps) {
 				},
 				{
 					method: 'post',
-					action: '/drag'
+					action: '/todos'
 				}
 			)
-
 			return { id: 'CalendarItem' }
 		},
 		collect: (monitor) => ({

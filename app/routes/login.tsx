@@ -1,6 +1,7 @@
-import { json, useFetcher } from 'remix'
+import type { ActionFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useFetcher } from "@remix-run/react";
 import { useRef } from 'react'
-import type { ActionFunction } from 'remix'
 import { login, createUserSession } from '../db/session.server'
 
 export interface User {
