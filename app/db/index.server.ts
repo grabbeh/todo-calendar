@@ -71,7 +71,6 @@ export interface MoveTodoProps {
 }
 
 const moveToDate = async ({ id, year, month, day, user }: MoveTodoProps) => {
-	console.log(day)
 	const date = new Date(year, month - 1, day)
 	return await Todo.update({
 		id,

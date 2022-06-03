@@ -130,7 +130,6 @@ export const action: ActionFunction = async ({ request }) => {
 	}
 
 	if (_action === 'droppedOnDate') {
-		const formData = await request.formData()
 		const id = formData.get('id')
 		const year = formData.get('year')
 		const month = formData.get('month')

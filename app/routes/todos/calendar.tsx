@@ -1,5 +1,11 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { Links, Meta, Scripts, useLoaderData, useTransition } from "@remix-run/react";
+import type { LoaderFunction } from '@remix-run/node'
+import {
+	Links,
+	Meta,
+	Scripts,
+	useLoaderData,
+	useTransition
+} from '@remix-run/react'
 import { useRef, useEffect } from 'react'
 import { getCalendarData } from '../../db/index.server'
 import { getUser } from '../../db/session.server'
