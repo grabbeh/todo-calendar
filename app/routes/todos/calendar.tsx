@@ -65,19 +65,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function CalendarHolder() {
 	const { calendarData, current, longMonth } = useLoaderData()
-
 	const transition = useTransition()
-	const isAdding =
-		transition?.state === 'submitting' &&
-		transition.submission?.formData.get('_action') === 'add'
-	const formRef = useRef()
-
-	useEffect(() => {
-		if (!isAdding) {
-			formRef.current?.reset()
-		}
-	}, [isAdding])
-
 	return (
 		<Calendar
 			loading={transition?.state === 'loading'}

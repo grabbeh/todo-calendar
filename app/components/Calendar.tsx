@@ -62,13 +62,23 @@ const Calendar = ({ loading, data, current, longMonth }: CalendarProps) => {
 	)
 }
 
-export interface CalendarItemProps {
+export interface CalendarDragProps {
 	day: Day
 	current: DateProps
 }
 
-const CalendarItem = ({ day, current }: CalendarItemProps) => {
+export interface CalendarItemProps {
+	day: Day
+	current: DateProps
+	isActive: boolean
+}
+
+const CalendarItem = ({ day, current, isActive }: CalendarItemProps) => {
 	let styles = randomBg()
+	let scale = ''
+	if (isActive) {
+		scale = 'px-2'
+	}
 	return (
 		<div key={day.date}>
 			{day.date === current.day ? (
@@ -93,7 +103,7 @@ const CalendarItem = ({ day, current }: CalendarItemProps) => {
 					key={day.date}
 					to={`/todos/calendar?year=${current.year}&month=${current.month}&day=${day.date}`}
 				>
-					<div className={styles}>
+					<div className={`${styles} ${scale}`}>
 						<div className='flex flex-grow'>
 							<div className='mr-1 font-bold text-xs'>{day.dayOfWeek}</div>
 							<div>{day.date}</div>
@@ -118,7 +128,7 @@ const CalendarItem = ({ day, current }: CalendarItemProps) => {
 }
 
 // Where item is dropped
-function CalendarDrag({ current, day }: CalendarItemProps) {
+function CalendarDrag({ current, day }: CalendarDragProps) {
 	const fetcher = useFetcher()
 	const [{ canDrop, isOver }, drop] = useDrop(() => ({
 		accept: ItemTypes.TODO_ITEM,
@@ -148,16 +158,10 @@ function CalendarDrag({ current, day }: CalendarItemProps) {
 	}))
 
 	const isActive = canDrop && isOver
-	let backgroundColor = 'bg-gray-700'
-	if (isActive) {
-		backgroundColor = 'bg-green-500'
-	} else if (canDrop) {
-		backgroundColor = 'bg-blue-500'
-	}
 	//console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
 	return (
-		<div ref={drop} role='CalendarItem' className={` ${backgroundColor}`}>
-			<CalendarItem current={current} day={day} />
+		<div ref={drop} role='CalendarItem'>
+			<CalendarItem isActive={isActive} current={current} day={day} />
 		</div>
 	)
 }
