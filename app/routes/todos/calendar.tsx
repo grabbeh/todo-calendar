@@ -1,11 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node'
-import {
-	Links,
-	Meta,
-	Scripts,
-	useLoaderData,
-	useTransition
-} from '@remix-run/react'
+import { useLoaderData, useTransition } from '@remix-run/react'
 import { useRef, useEffect } from 'react'
 import { getCalendarData } from '../../db/index.server'
 import { getUser } from '../../db/session.server'
@@ -45,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 	current.month = parseInt(url.searchParams.get('month') as any) || today.month
 	current.day = parseInt(url.searchParams.get('day') as any) || today.day
 
-	const calendarData: Day[] = await getCalendarData(
+	const calendarData = await getCalendarData(
 		user.email,
 		current.year,
 		current.month

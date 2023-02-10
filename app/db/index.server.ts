@@ -110,6 +110,23 @@ const getTodosByDate = async (
 	return todos.Items
 }
 
+const getOutstandingTodosByDate = async (
+	user: string,
+	year: number,
+	month: number,
+	day: number
+) => {
+	let date = `YEAR${year}#MONTH${month}#DAY${day}#`
+	const todos = await ShopTable.query(`USER#${user}`, {
+		index: 'GSI1',
+		beginsWith: date
+	})
+	return todos.Items.filter((i) => {
+		console.log(i)
+		return i.status === 'OUTSTANDING'
+	})
+}
+
 const getCalendarData = async (user: string, year: number, month: number) => {
 	let data = await getTodosByDate(user, year, month)
 	let supplementedData = data.map((i: Todo) => {
@@ -211,6 +228,7 @@ export {
 	getTodo,
 	getTodos,
 	getTodosByDate,
+	getOutstandingTodosByDate,
 	updateTodo,
 	deleteTodo,
 	getCalendarData,

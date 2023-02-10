@@ -13,6 +13,7 @@ import { useRef, useEffect } from 'react'
 import {
 	addTodo,
 	getTodosByDate,
+	getOutstandingTodosByDate,
 	deleteTodo,
 	updateTodo,
 	moveToToday,
@@ -123,6 +124,16 @@ export const action: ActionFunction = async ({ request }) => {
 		const oldStatus = formData.get('status')
 		const status = oldStatus === 'OUTSTANDING' ? 'COMPLETED' : 'OUTSTANDING'
 		return await updateTodo({ ...values, status, user })
+	}
+
+	if (_action === 'moveAllToToday') {
+		const year = formData.get('year')
+		const month = formData.get('month')
+		const day = formData.get('day')
+		const outstanding = await getOutstandingTodosByDate(user, year, month, day)
+		outstanding.forEach(async (t) => {
+			return await moveToToday({ ...t, user })
+		})
 	}
 
 	if (_action === 'moveToToday') {
@@ -272,6 +283,17 @@ export default function Todos() {
 							<div className='ml-3'> {rating(percentage)}</div>
 						</div>
 						<Dustbin />
+						<fetcher.Form method='post'>
+							<div>
+								<input hidden name='year' value={current.year} />
+								<input hidden name='month' value={current.month} />
+								<input hidden name='day' value={current.day} />
+								<button type='submit' name='_action' value='moveAllToToday'>
+									Move all
+								</button>
+								{errors?.text ? <span>{errors.text}</span> : null}
+							</div>
+						</fetcher.Form>
 						<ul>
 							{todosForDay.length > 0 ? (
 								todosForDay.map((todo: Todo) => (
@@ -380,7 +402,7 @@ function Dustbin() {
 	)
 }
 
-// draggable item
+// draggable item, wraps actual Todo item
 
 function Box({ todo, current, today }: TodoItemProps) {
 	const [{ isDragging }, drag] = useDrag(() => ({

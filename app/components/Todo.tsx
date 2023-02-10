@@ -45,11 +45,9 @@ const TodoItem = ({ todo, today, current }: TodoItemProps) => {
 		setAudio(new Audio(mario))
 	}, [])
 	const start = (status: string) => {
-		console.log(status)
 		if (status === 'OUTSTANDING') {
 			audio.crossOrigin = 'anonymous'
 			var playPromise = audio.play()
-			console.log(playPromise)
 			if (playPromise !== undefined) {
 				playPromise.then(function () {}).catch(function () {})
 			}
@@ -153,7 +151,7 @@ const TodoItem = ({ todo, today, current }: TodoItemProps) => {
 						<label>
 							<input
 								defaultValue={todo.text}
-								className='focus:border-b-2 focus:outline-none text-2xl appearance-none border-b-2 border-gray-200'
+								className='focus:border-b-2 focus:outline-none text-2xl appearance-none bg-pink-200 border-b-2 border-gray-200'
 								type='text'
 								name='text'
 							/>
