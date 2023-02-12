@@ -131,7 +131,7 @@ export const action: ActionFunction = async ({ request }) => {
 		const month = formData.get('month')
 		const day = formData.get('day')
 		const outstanding = await getOutstandingTodosByDate(user, year, month, day)
-		outstanding.forEach(async (t) => {
+		outstanding.forEach(async (t: Todo) => {
 			return await moveToToday({ ...t, user })
 		})
 	}
@@ -282,18 +282,21 @@ export default function Todos() {
 							<div>TODOS</div>
 							<div className='ml-3'> {rating(percentage)}</div>
 						</div>
-						<Dustbin />
-						<fetcher.Form method='post'>
-							<div>
-								<input hidden name='year' value={current.year} />
-								<input hidden name='month' value={current.month} />
-								<input hidden name='day' value={current.day} />
-								<button type='submit' name='_action' value='moveAllToToday'>
-									Move all
-								</button>
-								{errors?.text ? <span>{errors.text}</span> : null}
-							</div>
-						</fetcher.Form>
+						<div className='flex justify-between'>
+							<Dustbin />
+
+							<fetcher.Form method='post'>
+								<div>
+									<input hidden name='year' value={current.year} />
+									<input hidden name='month' value={current.month} />
+									<input hidden name='day' value={current.day} />
+									<button type='submit' name='_action' value='moveAllToToday'>
+										Move all
+									</button>
+									{errors?.text ? <span>{errors.text}</span> : null}
+								</div>
+							</fetcher.Form>
+						</div>
 						<ul>
 							{todosForDay.length > 0 ? (
 								todosForDay.map((todo: Todo) => (

@@ -6,15 +6,15 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 500;
-	src: url('../../fonts/inter-v8-latin-500.eot'); /* IE9 Compat Modes */
+	src: url('/fonts/inter-v8-latin-500.eot'); /* IE9 Compat Modes */
 	src: local(''),
-		url('../fonts/../inter-v8-latin-500.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('../../fonts/inter-v8-latin-500.woff2') format('woff2'),
-		/* Super Modern Browsers */ url('../../fonts/inter-v8-latin-500.woff')
+		url('/fonts/inter-v8-latin-500.eot?#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */ url('/fonts/inter-v8-latin-500.woff2') format('woff2'),
+		/* Super Modern Browsers */ url('/fonts/inter-v8-latin-500.woff')
 			format('woff'),
-		/* Modern Browsers */ url('../../fonts/inter-v8-latin-500.ttf')
+		/* Modern Browsers */ url('/fonts/inter-v8-latin-500.ttf')
 			format('truetype'),
-		/* Safari, Android, iOS */ url('../../fonts/inter-v8-latin-500.svg#Inter')
+		/* Safari, Android, iOS */ url('/fonts/inter-v8-latin-500.svg#Inter')
 			format('svg'); /* Legacy iOS */
 }
 /* inter-900 - latin */
@@ -22,14 +22,14 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 900;
-	src: url('../../fonts/inter-v8-latin-900.eot'); /* IE9 Compat Modes */
+	src: url('/fonts/inter-v8-latin-900.eot'); /* IE9 Compat Modes */
 	src: local(''),
-		url('../../fonts/inter-v8-latin-900.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('../../fonts/inter-v8-latin-900.woff2') format('woff2'),
-		/* Super Modern Browsers */ url('../../fonts/inter-v8-latin-900.woff')
+		url('/fonts/inter-v8-latin-900.eot?#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */ url('/fonts/inter-v8-latin-900.woff2') format('woff2'),
+		/* Super Modern Browsers */ url('/fonts/inter-v8-latin-900.woff')
 			format('woff'),
-		/* Modern Browsers */ url('../../fonts/inter-v8-latin-900.ttf')
+		/* Modern Browsers */ url('/fonts/inter-v8-latin-900.ttf')
 			format('truetype'),
-		/* Safari, Android, iOS */ url('../../fonts/inter-v8-latin-900.svg#Inter')
+		/* Safari, Android, iOS */ url('/fonts/inter-v8-latin-900.svg#Inter')
 			format('svg'); /* Legacy iOS */
 }
