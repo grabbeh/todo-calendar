@@ -25,9 +25,10 @@ export interface TodoItemProps {
 	today: boolean
 	current: DateProps
 	todo: Todo
+	isDragging: boolean
 }
 
-const TodoItem = ({ todo, today, current }: TodoItemProps) => {
+const TodoItem = ({ isDragging, todo, today, current }: TodoItemProps) => {
 	const [audio, setAudio] = useState(null)
 	const [editable, setEditable] = useState(false)
 	const fetcher = useFetcher()
@@ -56,7 +57,8 @@ const TodoItem = ({ todo, today, current }: TodoItemProps) => {
 
 	return (
 		<li
-			className={`${isDeleting ? 'hidden' : ''} py-1 flex text-xl md:text-2xl`}
+			hidden={isDeleting}
+			className={`py-1 flex text-xl md:text-2xl`}
 			key={todo.id}
 		>
 			<div>
@@ -145,13 +147,13 @@ const TodoItem = ({ todo, today, current }: TodoItemProps) => {
 					''
 				)}
 			</div>
-			<div className='flex flex-wrap'>
+			<div className='bg-pink-200 flex flex-wrap'>
 				{editable && (
 					<fetcher.Form replace method='post'>
 						<label>
 							<input
 								defaultValue={todo.text}
-								className='focus:border-b-2 focus:outline-none text-2xl appearance-none bg-pink-200 border-b-2 border-gray-200'
+								className='focus:border-b-2 focus:outline-none text-2xl appearance-none bg-pink-200'
 								type='text'
 								name='text'
 							/>

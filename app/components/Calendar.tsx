@@ -38,7 +38,7 @@ const Calendar = ({ loading, data, current, longMonth }: CalendarProps) => {
 	return (
 		<div className='relative flex-col h-screen px-2 bg-blue-500 w-full md:w-1/2'>
 			{loading ? (
-				<div className='flex h-screen text-neutral-50 items-center justify-center text-2xl'>
+				<div className='flex h-screen text-white items-center justify-center text-2xl'>
 					Loading...
 				</div>
 			) : (

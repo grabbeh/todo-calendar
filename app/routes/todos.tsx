@@ -214,10 +214,14 @@ export default function Todos() {
 		fetcher?.state === 'submitting' &&
 		fetcher.submission?.formData.get('_action') === 'add'
 
+	const isDeleting =
+		fetcher?.state === 'submitting' &&
+		fetcher.submission?.formData.get('_action') === 'delete'
+
 	const formRef = useRef()
 
 	useEffect(() => {
-		if (!isAdding) {
+		if (isAdding) {
 			formRef.current?.reset()
 		}
 	}, [isAdding])
@@ -284,31 +288,35 @@ export default function Todos() {
 						</div>
 						<div className='flex justify-between'>
 							<Dustbin />
-
-							<fetcher.Form method='post'>
-								<div>
-									<input hidden name='year' value={current.year} />
-									<input hidden name='month' value={current.month} />
-									<input hidden name='day' value={current.day} />
-									<button type='submit' name='_action' value='moveAllToToday'>
-										Move all
-									</button>
-									{errors?.text ? <span>{errors.text}</span> : null}
-								</div>
-							</fetcher.Form>
+							{today.day !== current.day ? (
+								<fetcher.Form method='post'>
+									<div>
+										<input hidden name='year' value={current.year} />
+										<input hidden name='month' value={current.month} />
+										<input hidden name='day' value={current.day} />
+										<button type='submit' name='_action' value='moveAllToToday'>
+											Move all
+										</button>
+										{errors?.text ? <span>{errors.text}</span> : null}
+									</div>
+								</fetcher.Form>
+							) : null}
 						</div>
 						<ul>
-							{todosForDay.length > 0 ? (
-								todosForDay.map((todo: Todo) => (
-									<Box
-										current={current}
-										today={today.day === current.day}
-										todo={todo}
-										key={todo.id}
-									/>
-								))
-							) : (
-								<div className='text-2xl'>Nothing to do - yipee!</div>
+							{todosForDay.length > 0
+								? todosForDay.map((todo: Todo) => (
+										<Box
+											current={current}
+											today={today.day === current.day}
+											todo={todo}
+											key={todo.id}
+										/>
+								  ))
+								: null}
+							{todosForDay.length === 0 && today.day === current.day && (
+								<div hidden={isAdding} className='text-2xl'>
+									Nothing to do - yipee!
+								</div>
 							)}
 
 							{fetcher.submission?.formData.get('text') && (
@@ -386,7 +394,7 @@ function Dustbin() {
 	} else if (canDrop) {
 		backgroundColor = 'bg-blue-500'
 	}
-	console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
+	//console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
 	return (
 		<div className='flex gap-4'>
 			<div ref={drop} role='Dustbin' className={` ${backgroundColor}`}>
@@ -432,7 +440,13 @@ function Box({ todo, current, today }: TodoItemProps) {
 			className={`${opacity} cursor-move`}
 			data-testid={`box-${todo.id}`}
 		>
-			<TodoItem current={current} today={today} todo={todo} key={todo.id} />
+			<TodoItem
+				isDragging={isDragging}
+				current={current}
+				today={today}
+				todo={todo}
+				key={todo.id}
+			/>
 		</div>
 	)
 }
