@@ -1,12 +1,24 @@
 // Require AWS SDK and instantiate DocumentClient
 import { Table, Entity } from 'dynamodb-toolbox'
 import { DynamoDBClient, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb'
-import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
+import {
+	DynamoDBDocumentClient,
+	GetCommand,
+	PutCommand,
+	UpdateCommand,
+	DeleteCommand,
+	QueryCommand,
+	ScanCommand,
+	BatchGetCommand,
+	BatchWriteCommand,
+	TransactGetCommand,
+	TransactWriteCommand
+} from '@aws-sdk/lib-dynamodb'
 
 // We avoid top-level throws or side-effects that might crash the Lambda during initialization.
 // Environment variables should be set in the Netlify dashboard.
 
-let _DocumentClient: DynamoDBDocumentClient | undefined
+let _DocumentClient: any
 let _ShopTable: Table | undefined
 let _User: Entity<any, any, any> | undefined
 let _Todo: Entity<any, any, any> | undefined
@@ -24,7 +36,33 @@ try {
 	}
 
 	const client = new DynamoDBClient(clientConfig)
-	_DocumentClient = DynamoDBDocumentClient.from(client)
+	const marshallOptions = {
+		convertEmptyValues: true,
+		removeUndefinedValues: true,
+		convertClassInstanceToMap: true
+	}
+	const unmarshallOptions = {
+		wrapNumbers: false
+	}
+	const translateConfig = { marshallOptions, unmarshallOptions }
+	const documentClient = DynamoDBDocumentClient.from(client, translateConfig)
+
+	// Shim to make AWS SDK v3 compatible with DynamoDB Toolbox v0.6
+	_DocumentClient = {
+		get: (params: any) => ({ promise: () => documentClient.send(new GetCommand(params)) }),
+		put: (params: any) => ({ promise: () => documentClient.send(new PutCommand(params)) }),
+		delete: (params: any) => ({ promise: () => documentClient.send(new DeleteCommand(params)) }),
+		update: (params: any) => ({ promise: () => documentClient.send(new UpdateCommand(params)) }),
+		query: (params: any) => ({ promise: () => documentClient.send(new QueryCommand(params)) }),
+		scan: (params: any) => ({ promise: () => documentClient.send(new ScanCommand(params)) }),
+		batchGet: (params: any) => ({ promise: () => documentClient.send(new BatchGetCommand(params)) }),
+		batchWrite: (params: any) => ({ promise: () => documentClient.send(new BatchWriteCommand(params)) }),
+		transactGet: (params: any) => ({ promise: () => documentClient.send(new TransactGetCommand(params)) }),
+		transactWrite: (params: any) => ({ promise: () => documentClient.send(new TransactWriteCommand(params)) }),
+		options: {
+			convertEmptyValues: true
+		}
+	}
 
 	// Instantiate a table
 	_ShopTable = new Table({
