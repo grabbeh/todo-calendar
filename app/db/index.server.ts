@@ -85,12 +85,15 @@ const deleteTodo = async (id: string, user: string) => {
 }
 
 const getTodos = async (user: string) => {
-	const todos = await ShopTable.query(`USER#${user}`, { beginsWith: 'TODO#' })
+	const todos = await ShopTable.query({
+		partition: `USER#${user}`,
+		range: { beginsWith: 'TODO#' }
+	})
 	return todos.Items
 }
 
 const getTodo = async (user: string, id: string) => {
-	const todo = await Todo.get({ user, sk: id })
+	const todo = await Todo.get({ user, id })
 	return todo.Item
 }
 
@@ -103,9 +106,10 @@ const getTodosByDate = async (
 	let date
 	if (day) date = `YEAR${year}#MONTH${month}#DAY${day}#`
 	else date = `YEAR${year}#MONTH${month}#`
-	const todos = await ShopTable.query(`USER#${user}`, {
+	const todos = await ShopTable.query({
+		partition: `USER#${user}`,
 		index: 'GSI1',
-		beginsWith: date
+		range: { beginsWith: date }
 	})
 	return todos.Items
 }
@@ -117,11 +121,12 @@ const getOutstandingTodosByDate = async (
 	day: number
 ) => {
 	let date = `YEAR${year}#MONTH${month}#DAY${day}#`
-	const todos = await ShopTable.query(`USER#${user}`, {
+	const todos = await ShopTable.query({
+		partition: `USER#${user}`,
 		index: 'GSI1',
-		beginsWith: date
+		range: { beginsWith: date }
 	})
-	return todos.Items.filter((i) => {
+	return todos.Items.filter((i: any) => {
 		console.log(i)
 		return i.status === 'OUTSTANDING'
 	})
@@ -211,12 +216,12 @@ const fetchUser = async (email: string) => {
 const login = async (email: string, password: string) => {
 	let passwordHash = '42kkjskfsjlkfjds34234'
 	// password hashing
-	let user = await User.get({
+	let { Item } = await User.get({
 		email,
 		sk: email
 	})
-	if (passwordHash !== user.passwordHash) {
-		return user
+	if (Item && passwordHash !== (Item as any).passwordHash) {
+		return Item
 	} else return new Error('No user or password match')
 }
 
