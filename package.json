@@ -5,10 +5,10 @@
 	"license": "MIT",
 	"dependencies": {
 		"@netlify/functions": "^1.4.0",
-		"@remix-run/netlify": "^1.12.0",
-		"@remix-run/node": "^1.12.0",
-		"@remix-run/react": "^1.12.0",
-		"@remix-run/serve": "^1.12.0",
+		"@netlify/remix-adapter": "^2.5.1",
+		"@remix-run/node": "^2.17.4",
+		"@remix-run/react": "^2.17.4",
+		"@remix-run/serve": "^2.17.4",
 		"aws-sdk": "^2.1066.0",
 		"axios": "^1.2.1",
 		"bcryptjs": "^2.4.3",
@@ -25,29 +25,29 @@
 		"underscore": "^1.13.2"
 	},
 	"devDependencies": {
-		"@remix-run/dev": "^1.12.0",
+		"@remix-run/dev": "^2.17.4",
 		"@types/lodash": "^4.14.179",
 		"@types/react": "^18.0.10",
 		"@types/react-dom": "^18.0.5",
-		"autoprefixer": "^10.4.2",
+		"autoprefixer": "^10.4.20",
 		"concurrently": "^7.0.0",
 		"cross-env": "^7.0.3",
-		"postcss": "^8.4.5",
+		"postcss": "^8.4.47",
 		"rmx-cli": "^0.2.1",
-		"tailwindcss": "^1.1.4",
+		"tailwindcss": "^3.4.17",
 		"ts-standard": "^8.0.0",
-		"typescript": "^4.1.2"
+		"typescript": "^5.1.0"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"sideEffects": false,
 	"scripts": {
 		"build": "npm run build:css && remix build",
-		"build:css": "tailwindcss build ./styles/tailwind.css -o ./app/styles/app.css",
+		"build:css": "tailwindcss -i ./styles/tailwind.css -o ./app/styles/app.css",
 		"dev": "concurrently \"npm run dev:css\" \"npm run dev-remix\"",
-		"dev-remix": "remix watch",
-		"dev:css": "tailwindcss build ./styles/tailwind.css -o ./app/styles/app.css --watch",
+		"dev-remix": "remix dev",
+		"dev:css": "tailwindcss -i ./styles/tailwind.css -o ./app/styles/app.css --watch",
 		"netlify-dev": "cross-env NODE_ENV=development netlify dev",
 		"netlify-start": "cross-env NODE_ENV=production netlify dev"
 	}

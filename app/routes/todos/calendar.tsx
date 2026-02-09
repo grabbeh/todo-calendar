@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node'
-import { useLoaderData, useTransition } from '@remix-run/react'
+import { useLoaderData, useNavigation } from '@remix-run/react'
 import { useRef, useEffect } from 'react'
 import { getCalendarData } from '../../db/index.server'
 import { getUser } from '../../db/session.server'
@@ -59,10 +59,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function CalendarHolder() {
 	const { calendarData, current, longMonth } = useLoaderData()
-	const transition = useTransition()
+	const navigation = useNavigation()
 	return (
 		<Calendar
-			loading={transition?.state === 'loading'}
+			loading={navigation?.state === 'loading'}
 			data={calendarData}
 			current={current}
 			longMonth={longMonth}

@@ -11,7 +11,7 @@ import {
 import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => {
-	return { title: 'Todo app' }
+	return [{ title: 'Todo app' }]
 }
 
 export function links() {

@@ -33,11 +33,11 @@ const TodoItem = ({ isDragging, todo, today, current }: TodoItemProps) => {
 	const [editable, setEditable] = useState(false)
 	const fetcher = useFetcher()
 	const isDeleting =
-		fetcher.submission?.formData.get('id') === todo.id &&
-		fetcher.submission?.formData.get('_action') === 'delete'
+		fetcher.formData?.get('id') === todo.id &&
+		fetcher.formData?.get('_action') === 'delete'
 	const isChangingStatus =
-		fetcher.submission?.formData.get('id') === todo.id &&
-		fetcher.submission?.formData.get('_action') === 'changeStatus'
+		fetcher.formData?.get('id') === todo.id &&
+		fetcher.formData?.get('_action') === 'changeStatus'
 	const handleChange = (event: any) => {
 		return fetcher.submit(event.currentTarget, { replace: true })
 	}
