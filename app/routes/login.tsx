@@ -12,7 +12,7 @@ export interface User {
 export interface Errors {
 	email?: string
 	password?: string
-}
+}	
 
 export const action: ActionFunction = async ({ request }) => {
 	const formData = await request.formData()

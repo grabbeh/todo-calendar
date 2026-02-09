@@ -18,6 +18,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Index() {
+	console.log("Login")
 	return (
 		<div className='bg-pink-500 text-3xl flex justify-center h-screen pt-4'>
 			<div>

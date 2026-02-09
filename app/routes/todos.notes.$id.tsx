@@ -1,7 +1,7 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { useActionData, useFetcher, useLoaderData } from "@remix-run/react";
-import { getTodo, updateTodo } from '../../../db/index.server'
-import { requireUserEmail, getUser } from '../../../db/session.server'
+import { getTodo, updateTodo } from '../db/index.server'
+import { requireUserEmail, getUser } from '../db/session.server'
 import { useRef, useState } from 'react'
 
 export interface Todo {

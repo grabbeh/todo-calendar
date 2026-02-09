@@ -1,9 +1,9 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { useLoaderData, useNavigation } from '@remix-run/react'
 import { useRef, useEffect } from 'react'
-import { getCalendarData } from '../../db/index.server'
-import { getUser } from '../../db/session.server'
-import { Calendar } from '../../components/Calendar'
+import { getCalendarData } from '../db/index.server'
+import { getUser } from '../db/session.server'
+import { Calendar } from '../components/Calendar'
 
 export interface Errors {
 	text?: string
@@ -44,7 +44,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 		current.year,
 		current.month
 	)
-
 	const date = new Date(current.year, current.month - 1, current.day)
 	const longMonth = date.toLocaleString('default', { month: 'long' })
 

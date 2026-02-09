@@ -10,7 +10,7 @@ import {
 	useRouteError,
 	isRouteErrorResponse
 } from '@remix-run/react'
-import styles from './styles/app.css'
+import styles from './styles/app.css?url'
 
 export const meta: MetaFunction = () => {
 	return [{ title: 'Todo app' }]
@@ -42,7 +42,6 @@ export default function App() {
 				<Outlet />
 				<ScrollRestoration />
 				<Scripts />
-				{process.env.NODE_ENV === 'development' && <LiveReload />}
 			</body>
 		</html>
 	)
