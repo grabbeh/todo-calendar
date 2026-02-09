@@ -1,99 +1,92 @@
 // Require AWS SDK and instantiate DocumentClient
 import { Table, Entity } from 'dynamodb-toolbox'
-import dotenv from 'dotenv'
 import AWS from 'aws-sdk'
-dotenv.config({ path: '../../.env' })
 
-AWS.config.update({
-	region: 'eu-west-1',
-	accessKeyId: process.env.AWS_KEY,
-	secretAccessKey: process.env.AWS_SECRET
+// We avoid top-level throws or side-effects that might crash the Lambda during initialization.
+// Environment variables should be set in the Netlify dashboard.
+
+let _DocumentClient: AWS.DynamoDB.DocumentClient | undefined
+let _ShopTable: Table | undefined
+let _User: Entity<any, any, any> | undefined
+let _Todo: Entity<any, any, any> | undefined
+
+try {
+	if (process.env.AWS_KEY && process.env.AWS_SECRET) {
+		AWS.config.update({
+			region: 'eu-west-1',
+			accessKeyId: process.env.AWS_KEY,
+			secretAccessKey: process.env.AWS_SECRET
+		})
+	}
+
+	_DocumentClient = new AWS.DynamoDB.DocumentClient()
+
+	// Instantiate a table
+	_ShopTable = new Table({
+		name: 'shop',
+		partitionKey: 'pk',
+		sortKey: 'sk',
+		indexes: {
+			GSI1: { partitionKey: 'GSI1pk', sortKey: 'GSI1sk' }
+		},
+		DocumentClient: _DocumentClient
+	})
+
+	_User = new Entity({
+		name: 'User',
+		attributes: {
+			email: { partitionKey: true, prefix: 'USER#' },
+			sk: { sortKey: true, prefix: 'USER#' },
+			passwordHash: { type: 'string' }
+		},
+		table: _ShopTable
+	}) as Entity<any, any, any>
+
+	_Todo = new Entity({
+		name: 'Todo',
+		attributes: {
+			user: { partitionKey: true, prefix: 'USER#' },
+			sk: { sortKey: true, prefix: 'TODO#' },
+			text: { type: 'string' },
+			status: { type: 'string', default: 'OUTSTANDING' },
+			editable: { type: 'string' },
+			notes: { type: 'string' },
+			id: ['sk', 0],
+			userName: { type: 'string' },
+			date: { type: 'string' },
+			GSI1pk: { type: 'string' },
+			GSI1sk: { type: 'string' }
+		},
+		table: _ShopTable
+	}) as Entity<any, any, any>
+} catch (error: any) {
+	console.error('Failed to initialize DynamoDB connection:', error)
+}
+
+// Proxies to ensure we get a helpful error if the DB failed to initialize
+export const ShopTable = new Proxy({} as Table, {
+	get(target, prop) {
+		if (!_ShopTable) {
+			throw new Error('DynamoDB ShopTable is not initialized. Check your AWS credentials.')
+		}
+		return (_ShopTable as any)[prop]
+	}
 })
 
-const DocumentClient = new AWS.DynamoDB.DocumentClient()
-
-// Instantiate a table
-const ShopTable = new Table({
-	name: 'shop',
-	partitionKey: 'pk',
-	sortKey: 'sk',
-	indexes: {
-		GSI1: { partitionKey: 'GSI1pk', sortKey: 'GSI1sk' }
-	},
-	DocumentClient
-})
-/*
-const Product = new Entity({
-
-  name: 'Item',
-  attributes: {
-    pk: { partitionKey: true, prefix: '' },
-    sk: { sortKey: true, prefix: '' },
-    // forming a sort key from multiple attributes
-    user: ['sk', 0, { type: 'string' }],
-    id: ['sk', 1],
-  },
-  table: ShopTable
-})
-*/
-
-const User = new Entity({
-	name: 'User',
-	attributes: {
-		email: { partitionKey: true, prefix: 'USER#' },
-		sk: { sortKey: true, prefix: 'USER#' },
-		passwordHash: { type: 'string' }
-	},
-	table: ShopTable
+export const User = new Proxy({} as Entity<any, any, any>, {
+	get(target, prop) {
+		if (!_User) {
+			throw new Error('DynamoDB User entity is not initialized. Check your AWS credentials.')
+		}
+		return (_User as any)[prop]
+	}
 })
 
-const Todo = new Entity({
-	name: 'Todo',
-	attributes: {
-		user: { partitionKey: true, prefix: 'USER#' },
-		sk: { sortKey: true, prefix: 'TODO#' },
-		text: { type: 'string' },
-		status: { type: 'string', default: 'OUTSTANDING' },
-		editable: { type: 'string' },
-		notes: { type: 'string' },
-		id: ['sk', 0],
-		userName: { type: 'string' },
-		date: { type: 'string' },
-		GSI1pk: { type: 'string' },
-		GSI1sk: { type: 'string' }
-	},
-	table: ShopTable
+export const Todo = new Proxy({} as Entity<any, any, any>, {
+	get(target, prop) {
+		if (!_Todo) {
+			throw new Error('DynamoDB Todo entity is not initialized. Check your AWS credentials.')
+		}
+		return (_Todo as any)[prop]
+	}
 })
-
-// 'Secondary index for date sorted todos'
-
-export { Todo, User, ShopTable }
-
-/*
-const Order = new Entity({
-    name:'Order',
-    attributes:{
-    }
-    // user#id#product#id
-})
-
-const Customer = new Entity({
-    name:'Customer',
-    attributes:''
-})
-
-const User = new Entity({
-    name:"User",
-    attributes:{
-
-    }
-})
-
-const OrderItems = new Entity({
-    name:"OrderItems",
-    attributes:{
-
-    }
-})*/
-
-//export { Todo, User, Product, Order, OrderItems, Customer, ShopTable }
