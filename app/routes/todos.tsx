@@ -212,11 +212,11 @@ export default function Todos() {
 
 	const isAdding =
 		fetcher?.state === 'submitting' &&
-		fetcher.submission?.formData.get('_action') === 'add'
+		fetcher.formData?.get('_action') === 'add'
 
 	const isDeleting =
 		fetcher?.state === 'submitting' &&
-		fetcher.submission?.formData.get('_action') === 'delete'
+		fetcher.formData?.get('_action') === 'delete'
 
 	const formRef = useRef()
 
@@ -319,7 +319,7 @@ export default function Todos() {
 								</div>
 							)}
 
-							{fetcher.submission?.formData.get('text') && (
+							{fetcher.formData?.get('text') && (
 								<li className='py-1 flex text-xl md:text-2xl'>
 									<div>
 										<label className='flex'>
@@ -327,7 +327,7 @@ export default function Todos() {
 												<input type='checkbox' />
 											</div>
 											<div className='ml-3 text-gray-800'>
-												{fetcher.submission?.formData.get('text')}
+												{fetcher.formData?.get('text')}
 											</div>
 										</label>
 									</div>
@@ -403,7 +403,7 @@ function Dustbin() {
 			<div>
 				<p>
 					{fetcher.state === 'submitting'
-						? `You dropped ${fetcher.submission.formData.get(
+						? `You dropped ${fetcher.formData.get(
 								'id'
 						  )} optimistically`
 						: fetcher.data?.message}

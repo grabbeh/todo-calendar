@@ -1,6 +1,6 @@
 import type { ActionFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { useActionData, useFetcher, useTransition } from "@remix-run/react";
+import { useActionData, useFetcher, useNavigation } from "@remix-run/react";
 import { useRef, useEffect } from 'react'
 import { register } from '../db/session.server'
 
@@ -47,10 +47,10 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function CreateAccount() {
 	const fetcher = useFetcher()
-	const transition = useTransition()
+	const navigation = useNavigation()
 	const isAdding =
-		transition?.state === 'submitting' &&
-		transition.submission?.formData.get('_action') === 'add'
+		navigation.state === 'submitting' &&
+		navigation.formData?.get('_action') === 'add'
 	const formRef = useRef()
 
 	let serverFailure = fetcher.data?.serverError

@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { Link, Links, Meta, Scripts, useLoaderData } from "@remix-run/react";
+import { Link, Links, Meta, Scripts, useLoaderData, useRouteError, isRouteErrorResponse } from "@remix-run/react";
 import { getUserEmail } from '../db/session.server'
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -33,7 +33,17 @@ export default function Index() {
 	)
 }
 
-export function ErrorBoundary({ error }) {
+export function ErrorBoundary() {
+	const error = useRouteError()
+	let errorMessage = 'Unknown error'
+	if (isRouteErrorResponse(error)) {
+		errorMessage = `${error.status} ${error.statusText}`
+	} else if (error instanceof Error) {
+		errorMessage = error.message
+	} else if (typeof error === 'string') {
+		errorMessage = error
+	}
+
 	return (
 		<html>
 			<head>
@@ -42,7 +52,7 @@ export function ErrorBoundary({ error }) {
 				<Links />
 			</head>
 			<body>
-				{error}
+				{errorMessage}
 				<Scripts />
 			</body>
 		</html>

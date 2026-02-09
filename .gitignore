@@ -1,7 +1,8 @@
 node_modules
 /.cache
-/netlify/functions/server/index.js
+/netlify/functions/server.js
 /public/build
+/build
 /.netlify
 .env
 
