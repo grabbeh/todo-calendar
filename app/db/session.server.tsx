@@ -43,7 +43,11 @@ const storage = createCookieSessionStorage({
 
 function checkSessionSecret() {
 	if (!process.env.SESSION_SECRET) {
-		throw new Error('SESSION_SECRET must be set')
+		console.warn(
+			'SESSION_SECRET environment variable is not set! Using fallback secret.'
+		)
+		// We no longer throw here to avoid Lambda initialization crashes.
+		// Remix will use the fallback secret provided in createCookieSessionStorage.
 	}
 }
 

@@ -64,10 +64,14 @@ var entry_server_exports = {};
 __export(entry_server_exports, {
   default: () => handleRequest
 });
-var import_react = require("@remix-run/react"), import_server = require("react-dom/server"), import_jsx_runtime = require("react/jsx-runtime");
+var import_react = require("@remix-run/react"), import_server = require("react-dom/server"), import_jsx_dev_runtime = require("react/jsx-dev-runtime");
 function handleRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext) {
   let markup = (0, import_server.renderToString)(
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.RemixServer, { context: remixContext, url: request.url })
+    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(import_react.RemixServer, { context: remixContext, url: request.url }, void 0, !1, {
+      fileName: "app/entry.server.tsx",
+      lineNumber: 13,
+      columnNumber: 5
+    }, this)
   );
   return responseHeaders.set("Content-Type", "text/html"), new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
@@ -78,6 +82,7 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
 // app/root.tsx
 var root_exports = {};
 __export(root_exports, {
+  ErrorBoundary: () => ErrorBoundary,
   default: () => App,
   links: () => links,
   meta: () => meta
@@ -85,10 +90,10 @@ __export(root_exports, {
 var import_react2 = require("@remix-run/react");
 
 // app/styles/app.css
-var app_default = "/build/_assets/app-APAR3KFX.css";
+var app_default = "/build/_assets/app-ZOTQKY5G.css";
 
 // app/root.tsx
-var import_jsx_runtime2 = require("react/jsx-runtime"), meta = () => [{ title: "Todo app" }];
+var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => [{ title: "Todo app" }];
 function links() {
   return [
     {
@@ -102,20 +107,126 @@ function links() {
   ];
 }
 function App() {
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("html", { lang: "en", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("head", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("meta", { charSet: "utf-8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Meta, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Links, {})
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("body", { style: { fontFamily: "Inter" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Outlet, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.ScrollRestoration, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Scripts, {}),
-      !1
-    ] })
-  ] });
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("meta", { charSet: "utf-8" }, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 36,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 37,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Meta, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 38,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Links, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 39,
+        columnNumber: 5
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/root.tsx",
+      lineNumber: 35,
+      columnNumber: 4
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { style: { fontFamily: "Inter" }, children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Outlet, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 42,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.ScrollRestoration, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 43,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Scripts, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 44,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.LiveReload, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 45,
+        columnNumber: 48
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/root.tsx",
+      lineNumber: 41,
+      columnNumber: 4
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/root.tsx",
+    lineNumber: 34,
+    columnNumber: 5
+  }, this);
+}
+function ErrorBoundary() {
+  let error = (0, import_react2.useRouteError)();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("title", { children: "System Error" }, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 57,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Meta, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 58,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Links, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 59,
+        columnNumber: 5
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/root.tsx",
+      lineNumber: 56,
+      columnNumber: 4
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { className: "p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "max-w-xl mx-auto bg-red-50 p-6 rounded-lg border border-red-200", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h1", { className: "text-2xl font-bold text-red-800 mb-4", children: (0, import_react2.isRouteErrorResponse)(error) ? `${error.status} ${error.statusText}` : "Application Error" }, void 0, !1, {
+          fileName: "app/root.tsx",
+          lineNumber: 63,
+          columnNumber: 6
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { className: "text-red-700 mb-4", children: (0, import_react2.isRouteErrorResponse)(error) ? error.data : error instanceof Error ? error.message : "An unexpected error occurred." }, void 0, !1, {
+          fileName: "app/root.tsx",
+          lineNumber: 68,
+          columnNumber: 6
+        }, this),
+        error instanceof Error && error.stack && /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("pre", { className: "bg-red-100 p-4 rounded text-sm overflow-auto text-red-900", children: error.stack }, void 0, !1, {
+          fileName: "app/root.tsx",
+          lineNumber: 76,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/root.tsx",
+        lineNumber: 62,
+        columnNumber: 5
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Scripts, {}, void 0, !1, {
+        fileName: "app/root.tsx",
+        lineNumber: 81,
+        columnNumber: 5
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/root.tsx",
+      lineNumber: 61,
+      columnNumber: 4
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/root.tsx",
+    lineNumber: 55,
+    columnNumber: 5
+  }, this);
 }
 
 // app/routes/create-account.tsx
@@ -130,45 +241,66 @@ var import_node2 = require("@remix-run/node"), import_react3 = require("@remix-r
 var import_bcryptjs = __toESM(require("bcryptjs"), 1), import_node = require("@remix-run/node");
 
 // app/db/table.server.ts
-var import_dynamodb_toolbox = require("dynamodb-toolbox"), import_dotenv = __toESM(require("dotenv"), 1), import_aws_sdk = __toESM(require("aws-sdk"), 1);
-import_dotenv.default.config({ path: "../../.env" });
-import_aws_sdk.default.config.update({
-  region: "eu-west-1",
-  accessKeyId: process.env.AWS_KEY,
-  secretAccessKey: process.env.AWS_SECRET
-});
-var DocumentClient = new import_aws_sdk.default.DynamoDB.DocumentClient(), ShopTable = new import_dynamodb_toolbox.Table({
-  name: "shop",
-  partitionKey: "pk",
-  sortKey: "sk",
-  indexes: {
-    GSI1: { partitionKey: "GSI1pk", sortKey: "GSI1sk" }
-  },
-  DocumentClient
-}), User = new import_dynamodb_toolbox.Entity({
-  name: "User",
-  attributes: {
-    email: { partitionKey: !0, prefix: "USER#" },
-    sk: { sortKey: !0, prefix: "USER#" },
-    passwordHash: { type: "string" }
-  },
-  table: ShopTable
-}), Todo = new import_dynamodb_toolbox.Entity({
-  name: "Todo",
-  attributes: {
-    user: { partitionKey: !0, prefix: "USER#" },
-    sk: { sortKey: !0, prefix: "TODO#" },
-    text: { type: "string" },
-    status: { type: "string", default: "OUTSTANDING" },
-    editable: { type: "string" },
-    notes: { type: "string" },
-    id: ["sk", 0],
-    userName: { type: "string" },
-    date: { type: "string" },
-    GSI1pk: { type: "string" },
-    GSI1sk: { type: "string" }
-  },
-  table: ShopTable
+var import_dynamodb_toolbox = require("dynamodb-toolbox"), import_aws_sdk = __toESM(require("aws-sdk"), 1), _DocumentClient, _ShopTable, _User, _Todo;
+try {
+  process.env.AWS_KEY && process.env.AWS_SECRET && import_aws_sdk.default.config.update({
+    region: "eu-west-1",
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_SECRET
+  }), _DocumentClient = new import_aws_sdk.default.DynamoDB.DocumentClient(), _ShopTable = new import_dynamodb_toolbox.Table({
+    name: "shop",
+    partitionKey: "pk",
+    sortKey: "sk",
+    indexes: {
+      GSI1: { partitionKey: "GSI1pk", sortKey: "GSI1sk" }
+    },
+    DocumentClient: _DocumentClient
+  }), _User = new import_dynamodb_toolbox.Entity({
+    name: "User",
+    attributes: {
+      email: { partitionKey: !0, prefix: "USER#" },
+      sk: { sortKey: !0, prefix: "USER#" },
+      passwordHash: { type: "string" }
+    },
+    table: _ShopTable
+  }), _Todo = new import_dynamodb_toolbox.Entity({
+    name: "Todo",
+    attributes: {
+      user: { partitionKey: !0, prefix: "USER#" },
+      sk: { sortKey: !0, prefix: "TODO#" },
+      text: { type: "string" },
+      status: { type: "string", default: "OUTSTANDING" },
+      editable: { type: "string" },
+      notes: { type: "string" },
+      id: ["sk", 0],
+      userName: { type: "string" },
+      date: { type: "string" },
+      GSI1pk: { type: "string" },
+      GSI1sk: { type: "string" }
+    },
+    table: _ShopTable
+  });
+} catch (error) {
+  console.error("Failed to initialize DynamoDB connection:", error);
+}
+var ShopTable = new Proxy({}, {
+  get(target, prop) {
+    if (!_ShopTable)
+      throw new Error("DynamoDB ShopTable is not initialized. Check your AWS credentials.");
+    return _ShopTable[prop];
+  }
+}), User = new Proxy({}, {
+  get(target, prop) {
+    if (!_User)
+      throw new Error("DynamoDB User entity is not initialized. Check your AWS credentials.");
+    return _User[prop];
+  }
+}), Todo = new Proxy({}, {
+  get(target, prop) {
+    if (!_Todo)
+      throw new Error("DynamoDB Todo entity is not initialized. Check your AWS credentials.");
+    return _Todo[prop];
+  }
 });
 
 // app/db/index.server.ts
@@ -246,25 +378,27 @@ async function login({ email, password }) {
   let user = await fetchUser(email);
   return !user || !await import_bcryptjs.default.compare(password, user.passwordHash) ? null : { email };
 }
-var sessionSecret = process.env.SESSION_SECRET;
-if (!sessionSecret)
-  throw new Error("SESSION_SECRET must be set");
 var storage = (0, import_node.createCookieSessionStorage)({
   cookie: {
     name: "RJ_session",
     // normally you want this to be `secure: true`
     // but that doesn't work on localhost for Safari
     // https://web.dev/when-to-use-local-https/
-    secure: !0,
-    secrets: [sessionSecret],
+    secure: !1,
+    secrets: [process.env.SESSION_SECRET || "temporary_secret_for_boot"],
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
     httpOnly: !0
   }
 });
-function getUserSession(request) {
-  return storage.getSession(request.headers.get("Cookie"));
+function checkSessionSecret() {
+  process.env.SESSION_SECRET || console.warn(
+    "SESSION_SECRET environment variable is not set! Using fallback secret."
+  );
+}
+async function getUserSession(request) {
+  return checkSessionSecret(), storage.getSession(request.headers.get("Cookie"));
 }
 async function getUserEmail(request) {
   let email = (await getUserSession(request)).get("email");
@@ -297,6 +431,7 @@ async function logout(request) {
   });
 }
 async function createUserSession(email, redirectTo) {
+  checkSessionSecret();
   let session = await storage.getSession();
   return session.set("email", email), (0, import_node.redirect)(redirectTo, {
     headers: {
@@ -306,7 +441,7 @@ async function createUserSession(email, redirectTo) {
 }
 
 // app/routes/create-account.tsx
-var import_jsx_runtime3 = require("react/jsx-runtime"), action = async ({ request }) => {
+var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), action = async ({ request }) => {
   let formData = await request.formData(), email = formData.get("email"), password = formData.get("password"), errors = {};
   if (email || (errors.emailError = "Please provide email!"), password || (errors.passwordError = "Please provide password!"), password?.length < 7 && (errors.passwordLength = "Password a bit too short there"), Object.keys(errors).length > 0)
     return (0, import_node2.json)({ errors }, { status: 422 });
@@ -321,32 +456,76 @@ function CreateAccount() {
   let fetcher = (0, import_react3.useFetcher)(), navigation = (0, import_react3.useNavigation)(), isAdding = navigation?.state === "submitting" && navigation.formData?.get("_action") === "add", formRef = (0, import_react4.useRef)(), serverFailure = fetcher.data?.serverError;
   return (0, import_react4.useEffect)(() => {
     isAdding || formRef.current?.reset();
-  }, [isAdding]), /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "flex justify-center h-screen items-center", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "mb-3 font-bold text-2xl", children: "Create account" }),
-    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(fetcher.Form, { ref: formRef, method: "post", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "font-bold text-xl", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("label", { children: "Email" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+  }, [isAdding]), /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex justify-center h-screen items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-3 font-bold text-2xl", children: "Create account" }, void 0, !1, {
+      fileName: "app/routes/create-account.tsx",
+      lineNumber: 67,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(fetcher.Form, { ref: formRef, method: "post", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "font-bold text-xl", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("label", { children: "Email" }, void 0, !1, {
+          fileName: "app/routes/create-account.tsx",
+          lineNumber: 71,
+          columnNumber: 8
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/create-account.tsx",
+          lineNumber: 70,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
           "input",
           {
             className: "focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200",
             type: "text",
             name: "email"
-          }
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/create-account.tsx",
+            lineNumber: 73,
+            columnNumber: 7
+          },
+          this
         )
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "mt-3 font-bold text-xl", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("label", { children: "Password" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      ] }, void 0, !0, {
+        fileName: "app/routes/create-account.tsx",
+        lineNumber: 69,
+        columnNumber: 6
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mt-3 font-bold text-xl", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("label", { children: "Password" }, void 0, !1, {
+          fileName: "app/routes/create-account.tsx",
+          lineNumber: 81,
+          columnNumber: 8
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/create-account.tsx",
+          lineNumber: 80,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
           "input",
           {
             className: "focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200",
             type: "password",
             name: "password"
-          }
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/create-account.tsx",
+            lineNumber: 83,
+            columnNumber: 7
+          },
+          this
         )
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "mt-3 flex justify-end", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      ] }, void 0, !0, {
+        fileName: "app/routes/create-account.tsx",
+        lineNumber: 79,
+        columnNumber: 6
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mt-3 flex justify-end", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
         "button",
         {
           className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
@@ -354,12 +533,40 @@ function CreateAccount() {
           name: "_action",
           value: "add",
           children: "CREATE"
-        }
-      ) }),
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/create-account.tsx",
+          lineNumber: 90,
+          columnNumber: 7
+        },
+        this
+      ) }, void 0, !1, {
+        fileName: "app/routes/create-account.tsx",
+        lineNumber: 89,
+        columnNumber: 6
+      }, this),
       serverFailure || "",
-      fetcher.data?.errors && Object.values(fetcher.data?.errors).map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: item }))
-    ] })
-  ] }) });
+      fetcher.data?.errors && Object.values(fetcher.data?.errors).map((item, i) => /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: item }, void 0, !1, {
+        fileName: "app/routes/create-account.tsx",
+        lineNumber: 102,
+        columnNumber: 8
+      }, this))
+    ] }, void 0, !0, {
+      fileName: "app/routes/create-account.tsx",
+      lineNumber: 68,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/create-account.tsx",
+    lineNumber: 66,
+    columnNumber: 4
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/create-account.tsx",
+    lineNumber: 65,
+    columnNumber: 3
+  }, this);
 }
 
 // server-entry-module:@remix-run/dev/server-build
@@ -380,12 +587,12 @@ var route4 = __toESM(require_search());
 // app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
-  ErrorBoundary: () => ErrorBoundary,
+  ErrorBoundary: () => ErrorBoundary2,
   default: () => Index,
   loader: () => loader2
 });
 var import_node4 = require("@remix-run/node"), import_react5 = require("@remix-run/react");
-var import_jsx_runtime4 = require("react/jsx-runtime"), loader2 = async ({ request }) => {
+var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader2 = async ({ request }) => {
   if (await getUserEmail(request)) {
     let now = /* @__PURE__ */ new Date(), year = now.getFullYear(), month = now.getMonth() + 1, day = now.getDate();
     return (0, import_node4.redirect)(
@@ -395,26 +602,86 @@ var import_jsx_runtime4 = require("react/jsx-runtime"), loader2 = async ({ reque
   return null;
 };
 function Index() {
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "bg-pink-500 text-3xl flex justify-center h-screen pt-4", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "font-bold", children: "TODO APP" }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react5.Link, { to: "/login", children: "Login" }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react5.Link, { to: "/create-account", children: "Register" }) })
-  ] }) });
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "bg-pink-500 text-3xl flex justify-center h-screen pt-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "font-bold", children: "TODO APP" }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 24,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Link, { to: "/login", children: "Login" }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 26,
+      columnNumber: 6
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 25,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Link, { to: "/create-account", children: "Register" }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 29,
+      columnNumber: 6
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 28,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/index.tsx",
+    lineNumber: 23,
+    columnNumber: 4
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/index.tsx",
+    lineNumber: 22,
+    columnNumber: 3
+  }, this);
 }
-function ErrorBoundary() {
+function ErrorBoundary2() {
   let error = (0, import_react5.useRouteError)();
-  return (0, import_react5.isRouteErrorResponse)(error) ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("h1", { children: [
+  return (0, import_react5.isRouteErrorResponse)(error) ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: [
       error.status,
       " ",
       error.statusText
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { children: error.data })
-  ] }) : error instanceof Error ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { children: "Error" }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { children: error.message }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("pre", { children: error.stack })
-  ] }) : /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { children: "Unknown Error" });
+    ] }, void 0, !0, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 42,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: error.data }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 45,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/index.tsx",
+    lineNumber: 41,
+    columnNumber: 4
+  }, this) : error instanceof Error ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "Error" }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 51,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: error.message }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 52,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("pre", { children: error.stack }, void 0, !1, {
+      fileName: "app/routes/index.tsx",
+      lineNumber: 53,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/index.tsx",
+    lineNumber: 50,
+    columnNumber: 4
+  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "Unknown Error" }, void 0, !1, {
+    fileName: "app/routes/index.tsx",
+    lineNumber: 57,
+    columnNumber: 10
+  }, this);
 }
 
 // app/routes/login.tsx
@@ -424,7 +691,7 @@ __export(login_exports, {
   default: () => Login
 });
 var import_node5 = require("@remix-run/node"), import_react6 = require("@remix-run/react"), import_react7 = require("react");
-var import_jsx_runtime5 = require("react/jsx-runtime"), action3 = async ({ request }) => {
+var import_jsx_dev_runtime5 = require("react/jsx-dev-runtime"), action3 = async ({ request }) => {
   let formData = await request.formData(), { _action } = Object.fromEntries(formData), email = formData.get("email"), password = formData.get("password"), errors = {};
   if (_action === "login") {
     if (formData.get("email") || (errors.email = "Please provide email!"), formData.get("password") || (errors.password = "Please provide password!"), Object.keys(errors).length > 0)
@@ -435,32 +702,76 @@ var import_jsx_runtime5 = require("react/jsx-runtime"), action3 = async ({ reque
 };
 function Login() {
   let fetcher = (0, import_react6.useFetcher)(), formRef = (0, import_react7.useRef)();
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "flex justify-center h-screen items-center", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "mb-3 font-bold text-2xl", children: "Login" }),
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(fetcher.Form, { ref: formRef, method: "post", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "text-xl", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("label", { children: "Email" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex justify-center h-screen items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mb-3 font-bold text-2xl", children: "Login" }, void 0, !1, {
+      fileName: "app/routes/login.tsx",
+      lineNumber: 53,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(fetcher.Form, { ref: formRef, method: "post", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-xl", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { children: "Email" }, void 0, !1, {
+          fileName: "app/routes/login.tsx",
+          lineNumber: 57,
+          columnNumber: 8
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/login.tsx",
+          lineNumber: 56,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
           "input",
           {
             className: "focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200",
             type: "text",
             name: "email"
-          }
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/login.tsx",
+            lineNumber: 59,
+            columnNumber: 7
+          },
+          this
         )
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "mt-3 text-xl", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("label", { children: "Password" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+      ] }, void 0, !0, {
+        fileName: "app/routes/login.tsx",
+        lineNumber: 55,
+        columnNumber: 6
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mt-3 text-xl", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { children: "Password" }, void 0, !1, {
+          fileName: "app/routes/login.tsx",
+          lineNumber: 67,
+          columnNumber: 8
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/login.tsx",
+          lineNumber: 66,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
           "input",
           {
             className: "focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200",
             type: "password",
             name: "password"
-          }
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/login.tsx",
+            lineNumber: 69,
+            columnNumber: 7
+          },
+          this
         )
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "mt-3 flex justify-end", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+      ] }, void 0, !0, {
+        fileName: "app/routes/login.tsx",
+        lineNumber: 65,
+        columnNumber: 6
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mt-3 flex justify-end", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
         "button",
         {
           className: "bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded",
@@ -468,11 +779,39 @@ function Login() {
           name: "_action",
           value: "login",
           children: "LOGIN"
-        }
-      ) }),
-      fetcher.data?.errors && Object.values(fetcher.data?.errors).map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { children: item }))
-    ] })
-  ] }) });
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/login.tsx",
+          lineNumber: 76,
+          columnNumber: 7
+        },
+        this
+      ) }, void 0, !1, {
+        fileName: "app/routes/login.tsx",
+        lineNumber: 75,
+        columnNumber: 6
+      }, this),
+      fetcher.data?.errors && Object.values(fetcher.data?.errors).map((item, i) => /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: item }, void 0, !1, {
+        fileName: "app/routes/login.tsx",
+        lineNumber: 87,
+        columnNumber: 8
+      }, this))
+    ] }, void 0, !0, {
+      fileName: "app/routes/login.tsx",
+      lineNumber: 54,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/login.tsx",
+    lineNumber: 52,
+    columnNumber: 4
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/login.tsx",
+    lineNumber: 51,
+    columnNumber: 3
+  }, this);
 }
 
 // app/routes/todos.tsx
@@ -489,7 +828,7 @@ var import_react8 = require("react"), DndContext = (0, import_react8.createConte
 });
 
 // node_modules/react-dnd/dist/core/DndProvider.js
-var import_jsx_runtime6 = require("react/jsx-runtime");
+var import_jsx_runtime = require("react/jsx-runtime");
 
 // node_modules/dnd-core/dist/createDragDropManager.js
 var import_redux = require("redux");
@@ -512,7 +851,7 @@ function invariant(condition, format, ...args) {
   }
 }
 function isProduction() {
-  return typeof process < "u" && !0;
+  return typeof process < "u" && !1;
 }
 
 // node_modules/dnd-core/dist/utils/js_utils.js
@@ -1474,7 +1813,7 @@ var refCount = 0, INSTANCE_SYM = Symbol.for("__REACT_DND_CONTEXT_INSTANCE__"), D
         --refCount === 0 && (context[INSTANCE_SYM] = null);
       };
     }
-  }, []), /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DndContext.Provider, {
+  }, []), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DndContext.Provider, {
     value: manager,
     children
   });
@@ -2780,7 +3119,7 @@ var import_react25 = require("react"), import_react26 = require("@remix-run/reac
 var mario_default = "/build/_assets/mario-4HVYHUNP.mp3";
 
 // app/components/icons/index.tsx
-var import_jsx_runtime7 = require("react/jsx-runtime"), EditButton = () => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), EditButton = () => /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2788,17 +3127,33 @@ var import_jsx_runtime7 = require("react/jsx-runtime"), EditButton = () => /* @_
     fill: "none",
     viewBox: "0 0 24 24",
     stroke: "currentColor",
-    children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+    children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
       "path",
       {
         strokeLinecap: "round",
         strokeLinejoin: "round",
         strokeWidth: 2,
         d: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-      }
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/components/icons/index.tsx",
+        lineNumber: 9,
+        columnNumber: 3
+      },
+      this
     )
-  }
-), DeleteButton = () => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { type: "submit", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+  },
+  void 0,
+  !1,
+  {
+    fileName: "app/components/icons/index.tsx",
+    lineNumber: 2,
+    columnNumber: 2
+  },
+  this
+), DeleteButton = () => /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("button", { type: "submit", children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2806,17 +3161,37 @@ var import_jsx_runtime7 = require("react/jsx-runtime"), EditButton = () => /* @_
     fill: "none",
     viewBox: "0 0 24 24",
     stroke: "currentColor",
-    children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+    children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
       "path",
       {
         strokeLinecap: "round",
         strokeLinejoin: "round",
         strokeWidth: 2,
         d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-      }
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/components/icons/index.tsx",
+        lineNumber: 27,
+        columnNumber: 4
+      },
+      this
     )
-  }
-) }), MoveToToday = () => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { type: "submit", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+  },
+  void 0,
+  !1,
+  {
+    fileName: "app/components/icons/index.tsx",
+    lineNumber: 20,
+    columnNumber: 3
+  },
+  this
+) }, void 0, !1, {
+  fileName: "app/components/icons/index.tsx",
+  lineNumber: 19,
+  columnNumber: 2
+}, this), MoveToToday = () => /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("button", { type: "submit", children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2824,20 +3199,40 @@ var import_jsx_runtime7 = require("react/jsx-runtime"), EditButton = () => /* @_
     fill: "none",
     viewBox: "0 0 24 24",
     stroke: "currentColor",
-    children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+    children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
       "path",
       {
         strokeLinecap: "round",
         strokeLinejoin: "round",
         strokeWidth: 2,
         d: "M5 11l7-7 7 7M5 19l7-7 7 7"
-      }
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/components/icons/index.tsx",
+        lineNumber: 46,
+        columnNumber: 4
+      },
+      this
     )
-  }
-) });
+  },
+  void 0,
+  !1,
+  {
+    fileName: "app/components/icons/index.tsx",
+    lineNumber: 39,
+    columnNumber: 3
+  },
+  this
+) }, void 0, !1, {
+  fileName: "app/components/icons/index.tsx",
+  lineNumber: 38,
+  columnNumber: 2
+}, this);
 
 // app/components/Todo.tsx
-var import_jsx_runtime8 = require("react/jsx-runtime"), TodoItem = ({ isDragging, todo, today, current }) => {
+var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), TodoItem = ({ isDragging, todo, today, current }) => {
   let [audio, setAudio] = (0, import_react25.useState)(null), [editable, setEditable] = (0, import_react25.useState)(!1), fetcher = (0, import_react26.useFetcher)(), isDeleting = fetcher.formData?.get("id") === todo.id && fetcher.formData?.get("_action") === "delete", isChangingStatus = fetcher.formData?.get("id") === todo.id && fetcher.formData?.get("_action") === "changeStatus", handleChange = (event) => fetcher.submit(event.currentTarget, { replace: !0 });
   (0, import_react25.useEffect)(() => {
     setAudio(new Audio(mario_default));
@@ -2851,25 +3246,45 @@ var import_jsx_runtime8 = require("react/jsx-runtime"), TodoItem = ({ isDragging
       });
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
     "li",
     {
       hidden: isDeleting,
       className: "py-1 flex text-xl md:text-2xl",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { children: !editable && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(fetcher.Form, { replace: !0, method: "post", onChange: handleChange, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "flex", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { children: !editable && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(fetcher.Form, { replace: !0, method: "post", onChange: handleChange, children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "input",
             {
               type: "checkbox",
               defaultChecked: todo.status === "COMPLETED",
               value: todo.status,
               name: "status"
-            }
-          ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "id", value: todo.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "_action", value: "changeStatus" }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+            },
+            void 0,
+            !1,
+            {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 69,
+              columnNumber: 9
+            },
+            this
+          ) }, void 0, !1, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 68,
+            columnNumber: 8
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "id", value: todo.id }, void 0, !1, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 76,
+            columnNumber: 8
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "_action", value: "changeStatus" }, void 0, !1, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 77,
+            columnNumber: 8
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "div",
             {
               onClick: () => {
@@ -2877,33 +3292,101 @@ var import_jsx_runtime8 = require("react/jsx-runtime"), TodoItem = ({ isDragging
               },
               className: `${todo.status === "COMPLETED" || isChangingStatus ? "line-through" : ""} ml-3 text-gray-800`,
               children: todo.text
-            }
+            },
+            void 0,
+            !1,
+            {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 78,
+              columnNumber: 8
+            },
+            this
           )
-        ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex", children: [
-          editable ? "" : /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(fetcher.Form, { replace: !0, method: "post", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "ml-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "id", value: todo.id }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "_action", value: "delete" })
-          ] }) }),
-          !editable && todo.status === "OUTSTANDING" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        ] }, void 0, !0, {
+          fileName: "app/components/Todo.tsx",
+          lineNumber: 67,
+          columnNumber: 7
+        }, this) }, void 0, !1, {
+          fileName: "app/components/Todo.tsx",
+          lineNumber: 66,
+          columnNumber: 6
+        }, this) }, void 0, !1, {
+          fileName: "app/components/Todo.tsx",
+          lineNumber: 64,
+          columnNumber: 4
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex", children: [
+          editable ? "" : /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(fetcher.Form, { replace: !0, method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "ml-3", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "id", value: todo.id }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 98,
+              columnNumber: 8
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "_action", value: "delete" }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 99,
+              columnNumber: 8
+            }, this)
+          ] }, void 0, !0, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 97,
+            columnNumber: 7
+          }, this) }, void 0, !1, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 96,
+            columnNumber: 6
+          }, this),
+          !editable && todo.status === "OUTSTANDING" ? /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "button",
             {
               onClick: () => setEditable(!0),
               className: "flex justify-end",
-              children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(EditButton, {})
-            }
+              children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(EditButton, {}, void 0, !1, {
+                fileName: "app/components/Todo.tsx",
+                lineNumber: 110,
+                columnNumber: 7
+              }, this)
+            },
+            void 0,
+            !1,
+            {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 106,
+              columnNumber: 6
+            },
+            this
           ) : "",
-          !editable && !today && todo.status === "OUTSTANDING" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(fetcher.Form, { replace: !0, method: "post", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "id", value: todo.id }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "_action", value: "moveToToday" }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(MoveToToday, {}) })
-          ] }) : "",
-          editable ? "" : /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+          !editable && !today && todo.status === "OUTSTANDING" ? /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(fetcher.Form, { replace: !0, method: "post", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "id", value: todo.id }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 117,
+              columnNumber: 7
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "_action", value: "moveToToday" }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 118,
+              columnNumber: 7
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(MoveToToday, {}, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 120,
+              columnNumber: 8
+            }, this) }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 119,
+              columnNumber: 7
+            }, this)
+          ] }, void 0, !0, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 116,
+            columnNumber: 6
+          }, this) : "",
+          editable ? "" : /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             import_react26.Link,
             {
               className: `${todo.notes ? "text-black" : "text-slate-300"}`,
               to: `/todos/notes/${todo.id}?year=${current.year}&month=${current.month}&day=${current.day}`,
-              children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                 "svg",
                 {
                   xmlns: "http://www.w3.org/2000/svg",
@@ -2912,40 +3395,96 @@ var import_jsx_runtime8 = require("react/jsx-runtime"), TodoItem = ({ isDragging
                   viewBox: "0 0 24 24",
                   stroke: "currentColor",
                   strokeWidth: 2,
-                  children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+                  children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                     "path",
                     {
                       strokeLinecap: "round",
                       strokeLinejoin: "round",
                       d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    }
+                    },
+                    void 0,
+                    !1,
+                    {
+                      fileName: "app/components/Todo.tsx",
+                      lineNumber: 139,
+                      columnNumber: 8
+                    },
+                    this
                   )
-                }
+                },
+                void 0,
+                !1,
+                {
+                  fileName: "app/components/Todo.tsx",
+                  lineNumber: 131,
+                  columnNumber: 7
+                },
+                this
               )
-            }
+            },
+            void 0,
+            !1,
+            {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 127,
+              columnNumber: 6
+            },
+            this
           )
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "bg-pink-200 flex flex-wrap", children: [
-          editable && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(fetcher.Form, { replace: !0, method: "post", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("label", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        ] }, void 0, !0, {
+          fileName: "app/components/Todo.tsx",
+          lineNumber: 94,
+          columnNumber: 4
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "bg-pink-200 flex flex-wrap", children: [
+          editable && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(fetcher.Form, { replace: !0, method: "post", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
               "input",
               {
                 defaultValue: todo.text,
                 className: "focus:border-b-2 focus:outline-none text-2xl appearance-none bg-pink-200",
                 type: "text",
                 name: "text"
-              }
-            ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "hidden", name: "id", value: todo.id }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { hidden: !0, type: "submit", name: "_action", value: "edit", children: "Edit" }) })
-          ] }),
-          editable && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+              },
+              void 0,
+              !1,
+              {
+                fileName: "app/components/Todo.tsx",
+                lineNumber: 154,
+                columnNumber: 8
+              },
+              this
+            ) }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 153,
+              columnNumber: 7
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("input", { type: "hidden", name: "id", value: todo.id }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 161,
+              columnNumber: 7
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("button", { hidden: !0, type: "submit", name: "_action", value: "edit", children: "Edit" }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 163,
+              columnNumber: 8
+            }, this) }, void 0, !1, {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 162,
+              columnNumber: 7
+            }, this)
+          ] }, void 0, !0, {
+            fileName: "app/components/Todo.tsx",
+            lineNumber: 152,
+            columnNumber: 6
+          }, this),
+          editable && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "button",
             {
               onClick: () => {
                 setEditable(!1);
               },
-              children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                 "svg",
                 {
                   xmlns: "http://www.w3.org/2000/svg",
@@ -2953,42 +3492,105 @@ var import_jsx_runtime8 = require("react/jsx-runtime"), TodoItem = ({ isDragging
                   fill: "none",
                   viewBox: "0 0 24 24",
                   stroke: "currentColor",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+                  children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                     "path",
                     {
                       strokeLinecap: "round",
                       strokeLinejoin: "round",
                       strokeWidth: 2,
                       d: "M6 18L18 6M6 6l12 12"
-                    }
+                    },
+                    void 0,
+                    !1,
+                    {
+                      fileName: "app/components/Todo.tsx",
+                      lineNumber: 182,
+                      columnNumber: 8
+                    },
+                    this
                   )
-                }
+                },
+                void 0,
+                !1,
+                {
+                  fileName: "app/components/Todo.tsx",
+                  lineNumber: 175,
+                  columnNumber: 7
+                },
+                this
               )
-            }
+            },
+            void 0,
+            !1,
+            {
+              fileName: "app/components/Todo.tsx",
+              lineNumber: 170,
+              columnNumber: 6
+            },
+            this
           )
-        ] })
+        ] }, void 0, !0, {
+          fileName: "app/components/Todo.tsx",
+          lineNumber: 150,
+          columnNumber: 4
+        }, this)
       ]
     },
-    todo.id
+    todo.id,
+    !0,
+    {
+      fileName: "app/components/Todo.tsx",
+      lineNumber: 59,
+      columnNumber: 3
+    },
+    this
   );
 };
 
 // app/utils/index.tsx
-var import_jsx_runtime9 = require("react/jsx-runtime"), rating = (percentage) => {
+var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime"), rating = (percentage) => {
   if (percentage === 100)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F603}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F603}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 2,
+      columnNumber: 33
+    }, this);
   if (percentage > 80)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F642}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F642}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 3,
+      columnNumber: 30
+    }, this);
   if (percentage > 60)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u2639\uFE0F" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u2639\uFE0F" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 4,
+      columnNumber: 30
+    }, this);
   if (percentage > 40)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F614}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F614}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 5,
+      columnNumber: 30
+    }, this);
   if (percentage > 20)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F622}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F622}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 6,
+      columnNumber: 30
+    }, this);
   if (percentage > 0)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F622}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F622}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 7,
+      columnNumber: 29
+    }, this);
   if (percentage === 0)
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: "\u{1F62D}" });
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: "\u{1F62D}" }, void 0, !1, {
+      fileName: "app/utils/index.tsx",
+      lineNumber: 8,
+      columnNumber: 31
+    }, this);
 }, dateProvider = (year, month, day) => {
   let current = {};
   current.year = year, current.month = month, current.day = day;
@@ -3003,7 +3605,7 @@ var import_jsx_runtime9 = require("react/jsx-runtime"), rating = (percentage) =>
 };
 
 // app/routes/todos.tsx
-var import_jsx_runtime10 = require("react/jsx-runtime"), ItemTypes = {
+var import_jsx_dev_runtime9 = require("react/jsx-dev-runtime"), ItemTypes = {
   TODO_ITEM: "todo"
 }, action4 = async ({ request }) => {
   let user = await requireUserEmail(request), formData = await request.formData(), { _action, ...values } = Object.fromEntries(formData), errors = {};
@@ -3069,14 +3671,14 @@ function Todos() {
   } = (0, import_react27.useLoaderData)(), fetcher = (0, import_react27.useFetcher)(), errors = (0, import_react27.useActionData)(), isAdding = fetcher?.state === "submitting" && fetcher.formData?.get("_action") === "add", isDeleting = fetcher?.state === "submitting" && fetcher.formData?.get("_action") === "delete", formRef = (0, import_react28.useRef)();
   return (0, import_react28.useEffect)(() => {
     isAdding && formRef.current?.reset();
-  }, [isAdding]), /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DndProvider, { backend: HTML5Backend, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "bg-pink-200 flex flex-wrap", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "flex-grow overflow-y-hidden md:relative", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "md:absolute md:inset-0 overflow-y-auto p-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "flex justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  }, [isAdding]), /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(DndProvider, { backend: HTML5Backend, children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "bg-pink-200 flex flex-wrap", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex-grow overflow-y-hidden md:relative", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "md:absolute md:inset-0 overflow-y-auto p-3", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
           import_react27.Link,
           {
             to: `/todos/calendar?year=${yesterday.year}&month=${yesterday.month}&day=${yesterday.day}`,
-            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
@@ -3084,31 +3686,71 @@ function Todos() {
                 fill: "none",
                 viewBox: "0 0 24 24",
                 stroke: "currentColor",
-                children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
                   "path",
                   {
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
                     strokeWidth: 2,
                     d: "M7 16l-4-4m0 0l4-4m-4 4h18"
-                  }
+                  },
+                  void 0,
+                  !1,
+                  {
+                    fileName: "app/routes/todos.tsx",
+                    lineNumber: 246,
+                    columnNumber: 11
+                  },
+                  this
                 )
-              }
+              },
+              void 0,
+              !1,
+              {
+                fileName: "app/routes/todos.tsx",
+                lineNumber: 239,
+                columnNumber: 10
+              },
+              this
             )
-          }
-        ) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "text-lg", children: today.day === current.day ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "Today" }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 236,
+            columnNumber: 9
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 235,
+          columnNumber: 8
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "text-lg", children: today.day === current.day ? /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: "Today" }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 257,
+          columnNumber: 10
+        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: [
           current.day,
           " ",
           longMonth,
           " ",
           current.year
-        ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        ] }, void 0, !0, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 259,
+          columnNumber: 10
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 255,
+          columnNumber: 8
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
           import_react27.Link,
           {
             to: `/todos/calendar?year=${tomorrow.year}&month=${tomorrow.month}&day=${tomorrow.day}`,
-            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
@@ -3116,71 +3758,258 @@ function Todos() {
                 fill: "none",
                 viewBox: "0 0 24 24",
                 stroke: "currentColor",
-                children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
                   "path",
                   {
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
                     strokeWidth: 2,
                     d: "M17 8l4 4m0 0l-4 4m4-4H3"
-                  }
+                  },
+                  void 0,
+                  !1,
+                  {
+                    fileName: "app/routes/todos.tsx",
+                    lineNumber: 275,
+                    columnNumber: 11
+                  },
+                  this
                 )
-              }
+              },
+              void 0,
+              !1,
+              {
+                fileName: "app/routes/todos.tsx",
+                lineNumber: 268,
+                columnNumber: 10
+              },
+              this
             )
-          }
-        ) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "mt-3 mb-2 font-bold text-5xl flex flex-wrap", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "TODOS" }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "ml-3", children: [
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 265,
+            columnNumber: 9
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 264,
+          columnNumber: 8
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 234,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "mt-3 mb-2 font-bold text-5xl flex flex-wrap", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: "TODOS" }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 286,
+          columnNumber: 8
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "ml-3", children: [
           " ",
           rating(percentage)
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "flex justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Dustbin, {}),
-        today.day !== current.day ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(fetcher.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { hidden: !0, name: "year", value: current.year }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { hidden: !0, name: "month", value: current.month }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { hidden: !0, name: "day", value: current.day }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "submit", name: "_action", value: "moveAllToToday", children: "Move all" }),
-          errors?.text ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: errors.text }) : null
-        ] }) }) : null
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("ul", { children: [
-        todosForDay.length > 0 ? todosForDay.map((todo) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        ] }, void 0, !0, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 287,
+          columnNumber: 8
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 285,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(Dustbin, {}, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 290,
+          columnNumber: 8
+        }, this),
+        today.day !== current.day ? /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(fetcher.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { hidden: !0, name: "year", value: current.year }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 294,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { hidden: !0, name: "month", value: current.month }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 295,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { hidden: !0, name: "day", value: current.day }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 296,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("button", { type: "submit", name: "_action", value: "moveAllToToday", children: "Move all" }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 297,
+            columnNumber: 11
+          }, this),
+          errors?.text ? /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { children: errors.text }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 300,
+            columnNumber: 27
+          }, this) : null
+        ] }, void 0, !0, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 293,
+          columnNumber: 10
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 292,
+          columnNumber: 9
+        }, this) : null
+      ] }, void 0, !0, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 289,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("ul", { children: [
+        todosForDay.length > 0 ? todosForDay.map((todo) => /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
           Box,
           {
             current,
             today: today.day === current.day,
             todo
           },
-          todo.id
+          todo.id,
+          !1,
+          {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 308,
+            columnNumber: 11
+          },
+          this
         )) : null,
-        todosForDay.length === 0 && today.day === current.day && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { hidden: isAdding, className: "text-2xl", children: "Nothing to do - yipee!" }),
-        fetcher.formData?.get("text") && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { className: "py-1 flex text-xl md:text-2xl", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("label", { className: "flex", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { type: "checkbox" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "ml-3 text-gray-800", children: fetcher.formData?.get("text") })
-        ] }) }) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "w-full mt-3", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(fetcher.Form, { ref: formRef, method: "post", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("label", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        todosForDay.length === 0 && today.day === current.day && /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { hidden: isAdding, className: "text-2xl", children: "Nothing to do - yipee!" }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 317,
+          columnNumber: 9
+        }, this),
+        fetcher.formData?.get("text") && /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("li", { className: "py-1 flex text-xl md:text-2xl", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("label", { className: "flex", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { type: "checkbox" }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 327,
+            columnNumber: 13
+          }, this) }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 326,
+            columnNumber: 12
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "ml-3 text-gray-800", children: fetcher.formData?.get("text") }, void 0, !1, {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 329,
+            columnNumber: 12
+          }, this)
+        ] }, void 0, !0, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 325,
+          columnNumber: 11
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 324,
+          columnNumber: 10
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 323,
+          columnNumber: 9
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 305,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "w-full mt-3", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(fetcher.Form, { ref: formRef, method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("label", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
           "input",
           {
             className: "w-full focus:border-b-2 focus:outline-none bg-pink-200 focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-black",
             type: "text",
             name: "text"
-          }
-        ) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { type: "hidden", name: "year", value: current.year }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { type: "hidden", name: "month", value: current.month }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("input", { type: "hidden", name: "day", value: current.day }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { hidden: !0, type: "submit", name: "_action", value: "add" }) }),
-        errors?.text ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: errors.text }) : null
-      ] }) }) })
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_react27.Outlet, {})
-  ] }) });
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/todos.tsx",
+            lineNumber: 341,
+            columnNumber: 11
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 340,
+          columnNumber: 10
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { type: "hidden", name: "year", value: current.year }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 347,
+          columnNumber: 10
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { type: "hidden", name: "month", value: current.month }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 348,
+          columnNumber: 10
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { type: "hidden", name: "day", value: current.day }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 349,
+          columnNumber: 10
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex justify-end", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("button", { hidden: !0, type: "submit", name: "_action", value: "add" }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 351,
+          columnNumber: 11
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 350,
+          columnNumber: 10
+        }, this),
+        errors?.text ? /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { children: errors.text }, void 0, !1, {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 353,
+          columnNumber: 26
+        }, this) : null
+      ] }, void 0, !0, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 339,
+        columnNumber: 9
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 338,
+        columnNumber: 8
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/todos.tsx",
+        lineNumber: 337,
+        columnNumber: 7
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 233,
+      columnNumber: 6
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 232,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(import_react27.Outlet, {}, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 359,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/todos.tsx",
+    lineNumber: 231,
+    columnNumber: 4
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/todos.tsx",
+    lineNumber: 230,
+    columnNumber: 3
+  }, this);
 }
 function Dustbin() {
   let fetcher = (0, import_react27.useFetcher)(), [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -3197,12 +4026,32 @@ function Dustbin() {
       canDrop: monitor.canDrop()
     })
   })), isActive = canDrop && isOver, backgroundColor = "";
-  return isActive ? backgroundColor = "bg-green-500" : canDrop && (backgroundColor = "bg-blue-500"), /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "flex gap-4", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { ref: drop, role: "Dustbin", className: ` ${backgroundColor}`, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DeleteButton, {}) }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: fetcher.state === "submitting" ? `You dropped ${fetcher.formData.get(
+  return isActive ? backgroundColor = "bg-green-500" : canDrop && (backgroundColor = "bg-blue-500"), /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex gap-4", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { ref: drop, role: "Dustbin", className: ` ${backgroundColor}`, children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(DeleteButton, {}, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 401,
+      columnNumber: 5
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 400,
+      columnNumber: 4
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("p", { children: fetcher.state === "submitting" ? `You dropped ${fetcher.formData.get(
       "id"
-    )} optimistically` : fetcher.data?.message }) })
-  ] });
+    )} optimistically` : fetcher.data?.message }, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 404,
+      columnNumber: 5
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 403,
+      columnNumber: 4
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/todos.tsx",
+    lineNumber: 399,
+    columnNumber: 3
+  }, this);
 }
 function Box({ todo, current, today }) {
   let [{ isDragging }, drag] = useDrag(() => ({
@@ -3217,14 +4066,14 @@ function Box({ todo, current, today }) {
       handlerId: monitor.getHandlerId()
     })
   }));
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
     "div",
     {
       ref: drag,
       role: "Box",
       className: `${isDragging ? "opacity-40" : "opacity-100"} cursor-move`,
       "data-testid": `box-${todo.id}`,
-      children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
         TodoItem,
         {
           isDragging,
@@ -3232,9 +4081,24 @@ function Box({ todo, current, today }) {
           today,
           todo
         },
-        todo.id
+        todo.id,
+        !1,
+        {
+          fileName: "app/routes/todos.tsx",
+          lineNumber: 443,
+          columnNumber: 4
+        },
+        this
       )
-    }
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/routes/todos.tsx",
+      lineNumber: 437,
+      columnNumber: 3
+    },
+    this
   );
 }
 
@@ -3244,7 +4108,7 @@ __export(test_exports, {
   default: () => Test
 });
 var import_react29 = require("react");
-var import_jsx_runtime11 = require("react/jsx-runtime");
+var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime");
 function Test() {
   let [audio, setAudio] = (0, import_react29.useState)(null);
   (0, import_react29.useEffect)(() => {
@@ -3257,22 +4121,30 @@ function Test() {
     }).catch(function(error) {
     });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
     "div",
     {
       onClick: () => {
         playAudio();
       },
       children: "Hello world"
-    }
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/routes/test.tsx",
+      lineNumber: 28,
+      columnNumber: 3
+    },
+    this
   );
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-RKB7BBYI.js", imports: ["/build/_shared/chunk-UQ6J26GH.js", "/build/_shared/chunk-3Z32TANI.js", "/build/_shared/chunk-T36URGAI.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-UHYPF62A.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/algolia": { id: "routes/algolia", parentId: "root", path: "algolia", index: void 0, caseSensitive: void 0, module: "/build/routes/algolia-4SQOF43X.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/create-account": { id: "routes/create-account", parentId: "root", path: "create-account", index: void 0, caseSensitive: void 0, module: "/build/routes/create-account-F365O5ID.js", imports: ["/build/_shared/chunk-BWVUMPIA.js"], hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: "index", index: void 0, caseSensitive: void 0, module: "/build/routes/index-RN4IR6C6.js", imports: ["/build/_shared/chunk-BWVUMPIA.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-SQ7LCIY7.js", imports: ["/build/_shared/chunk-BWVUMPIA.js"], hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-HOPHOQJQ.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/search": { id: "routes/search", parentId: "root", path: "search", index: void 0, caseSensitive: void 0, module: "/build/routes/search-ACV33MAH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/test": { id: "routes/test", parentId: "root", path: "test", index: void 0, caseSensitive: void 0, module: "/build/routes/test-DKYGO56M.js", imports: ["/build/_shared/chunk-YQNHUHT6.js"], hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/todos": { id: "routes/todos", parentId: "root", path: "todos", index: void 0, caseSensitive: void 0, module: "/build/routes/todos-IIMY2FXN.js", imports: ["/build/_shared/chunk-YQNHUHT6.js", "/build/_shared/chunk-BWVUMPIA.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "fbb280ac", hmr: void 0, url: "/build/manifest-FBB280AC.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-4UUOHSMC.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-IZSW7APK.js", "/build/_shared/chunk-MCH5QMAS.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-EANQ3RRQ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/algolia": { id: "routes/algolia", parentId: "root", path: "algolia", index: void 0, caseSensitive: void 0, module: "/build/routes/algolia-KVNALKWG.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/create-account": { id: "routes/create-account", parentId: "root", path: "create-account", index: void 0, caseSensitive: void 0, module: "/build/routes/create-account-4MPIN52W.js", imports: ["/build/_shared/chunk-DQANP6B4.js"], hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: "index", index: void 0, caseSensitive: void 0, module: "/build/routes/index-NORMLCXO.js", imports: ["/build/_shared/chunk-DQANP6B4.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-2INACUGS.js", imports: ["/build/_shared/chunk-DQANP6B4.js"], hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-GGSXPJWV.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/search": { id: "routes/search", parentId: "root", path: "search", index: void 0, caseSensitive: void 0, module: "/build/routes/search-HXDWZ2TE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/test": { id: "routes/test", parentId: "root", path: "test", index: void 0, caseSensitive: void 0, module: "/build/routes/test-UFPU4GYP.js", imports: ["/build/_shared/chunk-TOH3DRH5.js"], hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/todos": { id: "routes/todos", parentId: "root", path: "todos", index: void 0, caseSensitive: void 0, module: "/build/routes/todos-7S2WCBV4.js", imports: ["/build/_shared/chunk-NMZL6IDN.js", "/build/_shared/chunk-TOH3DRH5.js", "/build/_shared/chunk-DQANP6B4.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "6625e7db", hmr: { runtime: "/build/_shared/chunk-MCH5QMAS.js", timestamp: 1770646350718 }, url: "/build/manifest-6625E7DB.js" };
 
 // server-entry-module:@remix-run/dev/server-build
-var mode = "production", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1, v3_throwAbortReason: !1, v3_routeConfig: !1, v3_singleFetch: !1, v3_lazyRouteDiscovery: !1, unstable_optimizeDeps: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
+var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1, v3_throwAbortReason: !1, v3_routeConfig: !1, v3_singleFetch: !1, v3_lazyRouteDiscovery: !1, unstable_optimizeDeps: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
   root: {
     id: "root",
     parentId: void 0,
@@ -3365,9 +4237,10 @@ function getLoadContext(event, context) {
 var handler = (0, import_remix_adapter.createRequestHandler)({
   build: server_build_exports,
   getLoadContext,
-  mode: "production"
+  mode: "development"
 });
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   handler
 });
+//# sourceMappingURL=server.js.map
