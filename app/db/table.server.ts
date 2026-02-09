@@ -1,25 +1,30 @@
 // Require AWS SDK and instantiate DocumentClient
 import { Table, Entity } from 'dynamodb-toolbox'
-import AWS from 'aws-sdk'
+import { DynamoDBClient, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb'
+import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
 
 // We avoid top-level throws or side-effects that might crash the Lambda during initialization.
 // Environment variables should be set in the Netlify dashboard.
 
-let _DocumentClient: AWS.DynamoDB.DocumentClient | undefined
+let _DocumentClient: DynamoDBDocumentClient | undefined
 let _ShopTable: Table | undefined
 let _User: Entity<any, any, any> | undefined
 let _Todo: Entity<any, any, any> | undefined
 
 try {
-	if (process.env.AWS_KEY && process.env.AWS_SECRET) {
-		AWS.config.update({
-			region: 'eu-west-1',
-			accessKeyId: process.env.AWS_KEY,
-			secretAccessKey: process.env.AWS_SECRET
-		})
+	const clientConfig: DynamoDBClientConfig = {
+		region: 'eu-west-1'
 	}
 
-	_DocumentClient = new AWS.DynamoDB.DocumentClient()
+	if (process.env.AWS_KEY && process.env.AWS_SECRET) {
+		clientConfig.credentials = {
+			accessKeyId: process.env.AWS_KEY,
+			secretAccessKey: process.env.AWS_SECRET
+		}
+	}
+
+	const client = new DynamoDBClient(clientConfig)
+	_DocumentClient = DynamoDBDocumentClient.from(client)
 
 	// Instantiate a table
 	_ShopTable = new Table({

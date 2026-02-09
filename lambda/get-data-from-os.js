@@ -1,4 +1,9 @@
-const AWS = require('aws-sdk')
+const { HttpRequest } = require('@aws-sdk/protocol-http')
+const { defaultProvider } = require('@aws-sdk/credential-provider-node')
+const { SignatureV4 } = require('@aws-sdk/signature-v4')
+const { NodeHttpHandler } = require('@aws-sdk/node-http-handler')
+const { Sha256 } = require('@aws-crypto/sha256-js')
+
 const region = 'eu-west-1'
 const domain = process.env.OPENSEARCH_URL
 const api_type = '_search'
@@ -14,43 +19,47 @@ const searchDocument = async (term, user) => {
 				}
 			}
 		}
-		//creating a request body
-		const endpoint = new AWS.Endpoint(domain) //creating Endpoint
-		const request = new AWS.HttpRequest(endpoint, region) //creating request body with endpoint and region
-		request.method = 'GET' // method PUT, POST, GET & Delete
-		request.path += user + '/' + api_type + '/'
-		request.body = JSON.stringify(query)
-		request.headers['host'] = domain
-		request.headers['Content-Type'] = 'application/json'
-		request.headers['Content-Length'] = Buffer.byteLength(request.body)
 
-		//Signing the request with authorized credentails like IAM user or role
-		const credentials = new AWS.EnvironmentCredentials('AWS')
-		const signer = new AWS.Signers.V4(request, 'es')
-		signer.addAuthorization(credentials, new Date())
+		// Create the HTTP request
+		const request = new HttpRequest({
+			body: JSON.stringify(query),
+			headers: {
+				'Content-Type': 'application/json',
+				host: domain
+			},
+			hostname: domain,
+			method: 'GET',
+			path: `/${user}/${api_type}/`
+		})
 
-		//http request to the server
-		const client = new AWS.HttpClient()
+		// Sign the request
+		const signer = new SignatureV4({
+			credentials: defaultProvider(),
+			region: region,
+			service: 'es',
+			sha256: Sha256
+		})
+
+		const signedRequest = await signer.sign(request)
+
+		// Send the request
+		const client = new NodeHttpHandler()
+		const { response } = await client.handle(signedRequest)
+
 		return new Promise((resolve, reject) => {
-			client.handleRequest(
-				request,
-				null,
-				function (response) {
-					console.log(response.statusCode + ' ' + response.statusMessage)
-					var responseBody = ''
-					response.on('data', function (chunk) {
-						responseBody += chunk
-					})
-					response.on('end', function (chunk) {
-						console.log('Response body: ' + responseBody)
-						resolve(responseBody)
-					})
-				},
-				function (error) {
-					console.log('Error: ' + error)
-					reject(error)
-				}
-			)
+			console.log('Response status code:', response.statusCode)
+			var responseBody = ''
+			response.body.on('data', function (chunk) {
+				responseBody += chunk
+			})
+			response.body.on('end', function () {
+				console.log('Response body: ' + responseBody)
+				resolve(responseBody)
+			})
+			response.body.on('error', function (error) {
+				console.log('Error: ' + error)
+				reject(error)
+			})
 		})
 	} catch (err) {
 		console.log(err)

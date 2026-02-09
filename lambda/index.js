@@ -2,15 +2,15 @@ const { HttpRequest } = require('@aws-sdk/protocol-http')
 const { defaultProvider } = require('@aws-sdk/credential-provider-node')
 const { SignatureV4 } = require('@aws-sdk/signature-v4')
 const { NodeHttpHandler } = require('@aws-sdk/node-http-handler')
-const { Sha256 } = require('@aws-crypto/sha256-browser')
-const AWS = require('aws-sdk')
+const { Sha256 } = require('@aws-crypto/sha256-js')
+const { unmarshall } = require('@aws-sdk/util-dynamodb')
 
 const region = 'eu-west-1'
 const domain = ''
 const type = 'todo'
 exports.handler = async (event) => {
 	const unmarshalledRecords = event.Records.map((record) =>
-		AWS.DynamoDB.Converter.unmarshall(record.dynamodb.NewImage)
+		unmarshall(record.dynamodb.NewImage)
 	)
 
 	for (const record of unmarshalledRecords) {
@@ -53,14 +53,18 @@ async function indexDocument(document, id, user) {
 	// Send the request
 	var client = new NodeHttpHandler()
 	var { response } = await client.handle(signedRequest)
-	console.log(response.statusCode + ' ' + response.body.statusMessage)
+	console.log('Response status code:', response.statusCode)
 	var responseBody = ''
-	await new Promise(() => {
+	await new Promise((resolve, reject) => {
 		response.body.on('data', (chunk) => {
 			responseBody += chunk
 		})
 		response.body.on('end', () => {
 			console.log('Response body: ' + responseBody)
+			resolve()
+		})
+		response.body.on('error', (error) => {
+			reject(error)
 		})
 	}).catch((error) => {
 		console.log('Error: ' + error)
