@@ -26,11 +26,6 @@ export async function login({ email, password }: LoginForm) {
 	return { email }
 }
 
-const sessionSecret = process.env.SESSION_SECRET
-if (!sessionSecret) {
-	throw new Error('SESSION_SECRET must be set')
-}
-
 const storage = createCookieSessionStorage({
 	cookie: {
 		name: 'RJ_session',
@@ -38,7 +33,7 @@ const storage = createCookieSessionStorage({
 		// but that doesn't work on localhost for Safari
 		// https://web.dev/when-to-use-local-https/
 		secure: process.env.NODE_ENV === 'production',
-		secrets: [sessionSecret],
+		secrets: [process.env.SESSION_SECRET || 'temporary_secret_for_boot'],
 		sameSite: 'lax',
 		path: '/',
 		maxAge: 60 * 60 * 24 * 30,
@@ -46,7 +41,14 @@ const storage = createCookieSessionStorage({
 	}
 })
 
-function getUserSession(request: Request) {
+function checkSessionSecret() {
+	if (!process.env.SESSION_SECRET) {
+		throw new Error('SESSION_SECRET must be set')
+	}
+}
+
+async function getUserSession(request: Request) {
+	checkSessionSecret()
 	return storage.getSession(request.headers.get('Cookie'))
 }
 
@@ -94,6 +96,7 @@ export async function logout(request: Request) {
 }
 
 export async function createUserSession(email: string, redirectTo: string) {
+	checkSessionSecret()
 	const session = await storage.getSession()
 	session.set('email', email)
 	return redirect(redirectTo, {
