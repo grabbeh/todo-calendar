@@ -158,7 +158,7 @@ function CalendarDrag({ current, day }: CalendarDragProps) {
 	}))
 
 	const isActive = canDrop && isOver
-	//console.log(JSON.stringify(fetcher.submission?.formData.get('id'), null, 2))
+	//console.log(JSON.stringify(fetcher.formData?.get('id'), null, 2))
 	return (
 		<div ref={drop} role='CalendarItem'>
 			<CalendarItem isActive={isActive} current={current} day={day} />

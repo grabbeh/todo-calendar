@@ -2,10 +2,10 @@
  * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
-	future: {},
-	serverBuildTarget: 'netlify',
+	ignoredRouteFiles: ['**/.*'],
 	server: './server.js',
-	ignoredRouteFiles: ['.*'],
+	serverBuildPath: 'netlify/functions/server.js',
+	serverModuleFormat: 'cjs',
 	serverDependenciesToBundle: [
 		'@react-dnd/asap',
 		'@react-dnd/invariant',
@@ -14,9 +14,4 @@ module.exports = {
 		'react-dnd',
 		'react-dnd-html5-backend'
 	]
-	// appDirectory: "app",
-	// assetsBuildDirectory: "public/build",
-	// serverBuildPath: "netlify/functions/server/index.js",
-	// publicPath: "/build/",
-	// devServerPort: 8002
 }
