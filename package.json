@@ -44,9 +44,10 @@
 	"sideEffects": false,
 	"scripts": {
 		"build": "npm run build:css && remix build",
-		"build:css": "tailwind build ./styles/tailwind.css -o ./app/styles/app.css",
+		"build:css": "tailwindcss build ./styles/tailwind.css -o ./app/styles/app.css",
 		"dev": "concurrently \"npm run dev:css\" \"npm run dev-remix\"",
-		"dev:css": "tailwindcss -i ./styles/tailwind.css -o ./app/styles/app.css --watch",
+		"dev-remix": "remix watch",
+		"dev:css": "tailwindcss build ./styles/tailwind.css -o ./app/styles/app.css --watch",
 		"netlify-dev": "cross-env NODE_ENV=development netlify dev",
 		"netlify-start": "cross-env NODE_ENV=production netlify dev"
 	}

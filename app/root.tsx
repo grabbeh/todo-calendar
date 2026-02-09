@@ -19,7 +19,7 @@ export function links() {
 		{
 			rel: 'preload',
 			as: 'font',
-			href: '/fonts/inter-v8-latin-regular.woff2',
+			href: '/fonts/inter-v8-latin-500.woff2',
 			type: 'font/woff2',
 			crossOrigin: 'anonymous'
 		},
@@ -33,7 +33,7 @@ export default function App() {
 			<head>
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
-
+				<Meta />
 				<Links />
 			</head>
 			<body style={{ fontFamily: 'Inter' }}>
