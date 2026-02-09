@@ -39,7 +39,7 @@ const dateProvider = (year: number, month: number, day: number) => {
 	return { yesterday, current, tomorrow, longMonth }
 }
 
-const randomBg = () => {
+const randomBg = (seed: number) => {
 	const colours = [
 		'bg-red-200',
 		'bg-orange-200',
@@ -50,9 +50,10 @@ const randomBg = () => {
 		'bg-purple-200',
 		'bg-pink-200'
 	]
-	let random = colours[(colours.length * Math.random()) | 0]
+	let index = seed % colours.length
+	let color = colours[index]
 
-	return `text-2xl border-black rounded border-2 shadow-lg ${random} px-1 text-gray-800 flex`
+	return `text-2xl border-black rounded border-2 shadow-lg ${color} px-1 text-gray-800 flex`
 }
 
 const calendarRating = (completed: number, outstanding: number) => {

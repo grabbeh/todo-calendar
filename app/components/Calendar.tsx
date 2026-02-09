@@ -74,7 +74,7 @@ export interface CalendarItemProps {
 }
 
 const CalendarItem = ({ day, current, isActive }: CalendarItemProps) => {
-	let styles = randomBg()
+	let styles = randomBg(day.date)
 	let scale = ''
 	if (isActive) {
 		scale = 'px-2'
