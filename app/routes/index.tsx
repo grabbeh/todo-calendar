@@ -6,7 +6,13 @@ import { getUserEmail } from '../db/session.server'
 export const loader: LoaderFunction = async ({ request }) => {
 	let user = await getUserEmail(request)
 	if (user) {
-		return redirect('/todos')
+		const now = new Date()
+		const year = now.getFullYear()
+		const month = now.getMonth() + 1
+		const day = now.getDate()
+		return redirect(
+			`/todos/calendar?year=${year}&month=${month}&day=${day}`
+		)
 	}
 	return null
 }
