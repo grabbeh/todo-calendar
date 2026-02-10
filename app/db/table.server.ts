@@ -4,8 +4,6 @@ import { Entity } from 'dynamodb-toolbox/entity'
 import { item } from 'dynamodb-toolbox/schema/item'
 import { string } from 'dynamodb-toolbox/schema/string'
 import { prefix } from 'dynamodb-toolbox/transformers/prefix'
-import { EntityRepository } from 'dynamodb-toolbox/entity/actions/repository'
-import { TableRepository } from 'dynamodb-toolbox/table/actions/repository'
 import { DynamoDBClient, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
 
@@ -13,9 +11,9 @@ import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
 // Environment variables should be set in the Netlify dashboard.
 
 let _DocumentClient: DynamoDBDocumentClient | undefined
-let _ShopTableRepo: any | undefined
-let _UserRepo: any | undefined
-let _TodoRepo: any | undefined
+let _ShopTableInstance: any | undefined
+let _UserInstance: any | undefined
+let _TodoInstance: any | undefined
 
 try {
 	const clientConfig: DynamoDBClientConfig = {
@@ -46,7 +44,7 @@ try {
 		},
 		documentClient: _DocumentClient
 	})
-	_ShopTableRepo = _ShopTable.build(TableRepository)
+	_ShopTableInstance = _ShopTable
 
 	const _UserEntity = new Entity({
 		name: 'User',
@@ -57,7 +55,7 @@ try {
 		}),
 		table: _ShopTable
 	})
-	_UserRepo = _UserEntity.build(EntityRepository)
+	_UserInstance = _UserEntity
 
 	const _TodoEntity = new Entity({
 		name: 'Todo',
@@ -75,7 +73,7 @@ try {
 		}),
 		table: _ShopTable
 	})
-	_TodoRepo = _TodoEntity.build(EntityRepository)
+	_TodoInstance = _TodoEntity
 } catch (error: any) {
 	console.error('Failed to initialize DynamoDB connection:', error)
 }
@@ -83,27 +81,27 @@ try {
 // Proxies to ensure we get a helpful error if the DB failed to initialize
 export const ShopTable: any = new Proxy({} as any, {
 	get(target, prop) {
-		if (!_ShopTableRepo) {
+		if (!_ShopTableInstance) {
 			throw new Error('DynamoDB ShopTable is not initialized. Check your AWS credentials.')
 		}
-		return (_ShopTableRepo as any)[prop]
+		return (_ShopTableInstance as any)[prop]
 	}
 })
 
 export const User: any = new Proxy({} as any, {
 	get(target, prop) {
-		if (!_UserRepo) {
+		if (!_UserInstance) {
 			throw new Error('DynamoDB User entity is not initialized. Check your AWS credentials.')
 		}
-		return (_UserRepo as any)[prop]
+		return (_UserInstance as any)[prop]
 	}
 })
 
 export const Todo: any = new Proxy({} as any, {
 	get(target, prop) {
-		if (!_TodoRepo) {
+		if (!_TodoInstance) {
 			throw new Error('DynamoDB Todo entity is not initialized. Check your AWS credentials.')
 		}
-		return (_TodoRepo as any)[prop]
+		return (_TodoInstance as any)[prop]
 	}
 })

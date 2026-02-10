@@ -1,4 +1,9 @@
 import { Todo, User, ShopTable } from './table.server'
+import { GetItemCommand } from 'dynamodb-toolbox/entity/actions/get'
+import { PutItemCommand } from 'dynamodb-toolbox/entity/actions/put'
+import { UpdateItemCommand } from 'dynamodb-toolbox/entity/actions/update'
+import { DeleteItemCommand } from 'dynamodb-toolbox/entity/actions/delete'
+import { QueryCommand } from 'dynamodb-toolbox/table/actions/query'
 import KSUID from 'ksuid'
 import _ from 'lodash'
 
@@ -25,7 +30,7 @@ const addTodo = async (todo: Partial<Todo>) => {
 	const date = new Date(year, month - 1, day)
 	const ksuid = await KSUID.random()
 	const id = ksuid.string
-	let updated = await Todo.put({
+	let updated = await Todo.build(PutItemCommand).item({
 		text,
 		id,
 		user,
@@ -33,18 +38,18 @@ const addTodo = async (todo: Partial<Todo>) => {
 		date,
 		GSI1pk: `USER#${user}`,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`
-	})
+	}).send()
 	return updated
 }
 
 const updateTodo = async (todo: Partial<Todo>) => {
 	const { user, id, ...values } = todo
-	const existingTodo = await getTodo(user, id)
-	return await Todo.update({
+	const existingTodo = await getTodo(user as string, id as string)
+	return await Todo.build(UpdateItemCommand).item({
 		...existingTodo,
 		...values,
 		user
-	})
+	}).send()
 }
 
 const moveToToday = async (todo: Partial<Todo>) => {
@@ -53,13 +58,13 @@ const moveToToday = async (todo: Partial<Todo>) => {
 	const day = today.getDate()
 	const month = today.getMonth() + 1
 	const year = today.getFullYear()
-	return await Todo.update({
+	return await Todo.build(UpdateItemCommand).item({
 		id,
 		...values,
 		date: today,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
 		user
-	})
+	}).send()
 }
 
 export interface MoveTodoProps {
@@ -72,29 +77,32 @@ export interface MoveTodoProps {
 
 const moveToDate = async ({ id, year, month, day, user }: MoveTodoProps) => {
 	const date = new Date(year, month - 1, day)
-	return await Todo.update({
+	return await Todo.build(UpdateItemCommand).item({
 		id,
 		date,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
 		user
-	})
+	}).send()
 }
 
 const deleteTodo = async (id: string, user: string) => {
-	return Todo.delete({ id, user })
+	return Todo.build(DeleteItemCommand).key({ id, user }).send()
 }
 
 const getTodos = async (user: string) => {
-	const todos = await ShopTable.query({
-		partition: `USER#${user}`,
-		range: { beginsWith: 'TODO#' }
-	})
-	return todos.Items
+	const { Items } = await ShopTable.build(QueryCommand)
+		.query({
+			partition: `USER#${user}`,
+			range: { beginsWith: 'TODO#' }
+		})
+		.entities(Todo)
+		.send()
+	return Items
 }
 
 const getTodo = async (user: string, id: string) => {
-	const todo = await Todo.get({ user, id })
-	return todo.Item
+	const { Item } = await Todo.build(GetItemCommand).key({ user, id }).send()
+	return Item
 }
 
 const getTodosByDate = async (
@@ -106,12 +114,15 @@ const getTodosByDate = async (
 	let date
 	if (day) date = `YEAR${year}#MONTH${month}#DAY${day}#`
 	else date = `YEAR${year}#MONTH${month}#`
-	const todos = await ShopTable.query({
-		partition: `USER#${user}`,
-		index: 'GSI1',
-		range: { beginsWith: date }
-	})
-	return todos.Items
+	const { Items } = await ShopTable.build(QueryCommand)
+		.query({
+			partition: `USER#${user}`,
+			index: 'GSI1',
+			range: { beginsWith: date }
+		})
+		.entities(Todo)
+		.send()
+	return Items
 }
 
 const getOutstandingTodosByDate = async (
@@ -121,12 +132,15 @@ const getOutstandingTodosByDate = async (
 	day: number
 ) => {
 	let date = `YEAR${year}#MONTH${month}#DAY${day}#`
-	const todos = await ShopTable.query({
-		partition: `USER#${user}`,
-		index: 'GSI1',
-		range: { beginsWith: date }
-	})
-	return todos.Items.filter((i: any) => {
+	const { Items } = await ShopTable.build(QueryCommand)
+		.query({
+			partition: `USER#${user}`,
+			index: 'GSI1',
+			range: { beginsWith: date }
+		})
+		.entities(Todo)
+		.send()
+	return Items.filter((i: any) => {
 		console.log(i)
 		return i.status === 'OUTSTANDING'
 	})
@@ -198,28 +212,28 @@ const getMostActiveHour = tweets => {
 const addUser = async (user: Partial<User>) => {
 	let { email, passwordHash } = user
 	// password hashing
-	return await User.put({
+	return await User.build(PutItemCommand).item({
 		email,
 		sk: email,
 		passwordHash
-	})
+	}).send()
 }
 
 const fetchUser = async (email: string) => {
-	const user = await User.get({
+	const { Item } = await User.build(GetItemCommand).key({
 		email,
 		sk: email
-	})
-	return user.Item
+	}).send()
+	return Item
 }
 
 const login = async (email: string, password: string) => {
 	let passwordHash = '42kkjskfsjlkfjds34234'
 	// password hashing
-	let { Item } = await User.get({
+	let { Item } = await User.build(GetItemCommand).key({
 		email,
 		sk: email
-	})
+	}).send()
 	if (Item && passwordHash !== (Item as any).passwordHash) {
 		return Item
 	} else return new Error('No user or password match')
