@@ -52,7 +52,7 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"start": "remix-serve ./build/server/index.js",
+		"start": "netlify serve",
 		"build": "npm run build:css && remix vite:build",
 		"build:css": "tailwindcss -i ./styles/tailwind.css -o ./app/styles/app.css",
 		"dev": "concurrently \"npm run dev:css\" \"npm run dev-remix\"",
