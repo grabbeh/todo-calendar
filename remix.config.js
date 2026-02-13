@@ -4,7 +4,8 @@
 module.exports = {
 	ignoredRouteFiles: ['**/.*'],
 	server: './server.js',
-	serverBuildPath: 'netlify/functions/server.js',
+	//serverBuildPath: 'netlify/functions/server.js',
+	serverBuildPath: 'build/server/server.js',
 	serverModuleFormat: 'cjs',
 	serverDependenciesToBundle: [
 		'@react-dnd/asap',
