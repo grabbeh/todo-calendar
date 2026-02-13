@@ -2,7 +2,6 @@ import type { MetaFunction } from '@remix-run/node'
 import React from 'react'
 import {
 	Links,
-	LiveReload,
 	Meta,
 	Outlet,
 	Scripts,

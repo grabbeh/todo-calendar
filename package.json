@@ -1,5 +1,6 @@
 {
 	"private": true,
+	"type": "module",
 	"name": "todo-calendar",
 	"description": "",
 	"license": "MIT",
