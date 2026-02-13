@@ -7,7 +7,15 @@ export default defineConfig({
     server: {
     port: 3000,
   },
-  
+   ssr: {
+    noExternal: 
+      ['@react-dnd/asap',
+      '@react-dnd/invariant',
+      '@react-dnd/shallowequal',
+      'dnd-core',
+      'react-dnd',
+      'react-dnd-html5-backend']
+  },
   plugins: [
     remix({
       future: {
