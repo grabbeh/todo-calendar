@@ -3,9 +3,18 @@ import { Table } from 'dynamodb-toolbox/table'
 import { Entity } from 'dynamodb-toolbox/entity'
 import { item } from 'dynamodb-toolbox/schema/item'
 import { string } from 'dynamodb-toolbox/schema/string'
-import { prefix } from 'dynamodb-toolbox/transformers/prefix'
 import { DynamoDBClient, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
+
+export const userTransformer = {
+	encode: (val: string): string => `USER#${val}`,
+	decode: (val: string): string => val.replace(/^USER#/, '')
+}
+
+export const todoTransformer = {
+	encode: (val: string): string => `TODO#${val}`,
+	decode: (val: string): string => val.replace(/^TODO#/, '')
+}
 
 // We avoid top-level throws or side-effects that might crash the Lambda during initialization.
 // Environment variables should be set in the Netlify dashboard.
@@ -49,8 +58,8 @@ try {
 	const _UserEntity = new Entity({
 		name: 'User',
 		schema: item({
-			email: string().key().savedAs('pk').transform(prefix('USER#')),
-			sk: string().key().transform(prefix('USER#')),
+			email: string().key().savedAs('pk').transform(userTransformer),
+			sk: string().key().transform(userTransformer),
 			passwordHash: string().optional()
 		}),
 		table: _ShopTable
@@ -60,15 +69,15 @@ try {
 	const _TodoEntity = new Entity({
 		name: 'Todo',
 		schema: item({
-			user: string().key().savedAs('pk').transform(prefix('USER#')),
-			id: string().key().savedAs('sk').transform(prefix('TODO#')),
+			user: string().key().savedAs('pk').transform(userTransformer),
+			id: string().key().savedAs('sk').transform(todoTransformer),
 			text: string().optional(),
 			status: string().default('OUTSTANDING'),
 			editable: string().optional(),
 			notes: string().optional(),
 			userName: string().optional(),
 			date: string().optional(),
-			GSI1pk: string().optional(),
+			GSI1pk: string().optional().transform(userTransformer),
 			GSI1sk: string().optional()
 		}),
 		table: _ShopTable

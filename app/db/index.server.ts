@@ -1,4 +1,10 @@
-import { Todo, User, ShopTable } from './table.server'
+import {
+	Todo,
+	User,
+	ShopTable,
+	userTransformer,
+	todoTransformer
+} from './table.server'
 import { GetItemCommand } from 'dynamodb-toolbox/entity/actions/get'
 import { PutItemCommand } from 'dynamodb-toolbox/entity/actions/put'
 import { UpdateItemCommand } from 'dynamodb-toolbox/entity/actions/update'
@@ -36,7 +42,7 @@ const addTodo = async (todo: Partial<Todo>) => {
 		user,
 		userName: user,
 		date,
-		GSI1pk: `USER#${user}`,
+		GSI1pk: user,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`
 	}).send()
 	return updated
@@ -92,8 +98,8 @@ const deleteTodo = async (id: string, user: string) => {
 const getTodos = async (user: string) => {
 	const { Items } = await ShopTable.build(QueryCommand)
 		.query({
-			partition: `USER#${user}`,
-			range: { beginsWith: 'TODO#' }
+			partition: userTransformer.encode(user),
+			range: { beginsWith: todoTransformer.encode('') }
 		})
 		.entities(Todo)
 		.send()
@@ -116,7 +122,7 @@ const getTodosByDate = async (
 	else date = `YEAR${year}#MONTH${month}#`
 	const { Items } = await ShopTable.build(QueryCommand)
 		.query({
-			partition: `USER#${user}`,
+			partition: userTransformer.encode(user),
 			index: 'GSI1',
 			range: { beginsWith: date }
 		})
@@ -134,7 +140,7 @@ const getOutstandingTodosByDate = async (
 	let date = `YEAR${year}#MONTH${month}#DAY${day}#`
 	const { Items } = await ShopTable.build(QueryCommand)
 		.query({
-			partition: `USER#${user}`,
+			partition: userTransformer.encode(user),
 			index: 'GSI1',
 			range: { beginsWith: date }
 		})
