@@ -9,14 +9,13 @@ export default defineConfig({
   },
   
   plugins: [
-    netlifyPlugin(),
     remix({
-      serverBuildFile: "server.js",
       future: {
         unstable_optimizeDeps: true,
       },
       ignoredRouteFiles: ["**/*.css"],
-    }), tsconfigPaths(),
-    
+    }),
+    netlifyPlugin(),
+    tsconfigPaths(),
   ],
 });
