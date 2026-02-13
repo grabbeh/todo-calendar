@@ -11,7 +11,8 @@ export default defineConfig({
   plugins: [
     netlifyPlugin(),
     remix({
-        future: {
+      serverBuildFile: "server.js",
+      future: {
         unstable_optimizeDeps: true,
       },
       ignoredRouteFiles: ["**/*.css"],
