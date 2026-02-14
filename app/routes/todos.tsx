@@ -134,9 +134,11 @@ export const action: ActionFunction = async ({ request }) => {
 		const month = Number(formData.get('month'))
 		const day = Number(formData.get('day'))
 		const outstanding = await getOutstandingTodosByDate(user, year, month, day)
-		outstanding.forEach(async (t: Todo) => {
-			return await moveToToday({ ...t, user })
-		})
+		await Promise.all(
+			outstanding.map(async (t: Todo) => {
+				return await moveToToday({ ...t, user })
+			})
+		)
 	}
 
 	if (_action === 'moveToToday') {
