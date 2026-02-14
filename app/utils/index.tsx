@@ -58,6 +58,7 @@ const randomBg = (seed: number) => {
 
 const calendarRating = (completed: number, outstanding: number) => {
 	const total = completed + outstanding
+	if (total === 0) return null
 	const percentage = Math.floor((completed / total) * 100)
 	if (percentage === 100) return <div>✔️😃</div>
 	if (percentage > 80) return <div>🙂</div>
