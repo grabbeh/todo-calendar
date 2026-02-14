@@ -160,25 +160,20 @@ const getCalendarData = async (user: string, year: number, month: number) => {
 		return { ...i, day }
 	})
 	let grouped = _.groupBy(supplementedData, 'day')
-	let values = _.values(grouped)
-	let mapped = values.map((i) => {
-		return { todos: sortTodos(i), date: i[0].day }
-	})
 
 	let full = Array.from({ length: monthLengths[month - 1] }, (v, i) => {
-		let date = new Date(year, month - 1, i + 1)
+		let day = i + 1
+		let date = new Date(year, month - 1, day)
 		let dayOfWeekInt = date.getDay()
 		let dayOfWeek = getDayOfWeek(dayOfWeekInt)
-		return { date: i + 1, dayOfWeek, todos: { completed: 0, outstanding: 0 } }
+		let dayTodos = grouped[day]
+		return {
+			date: day,
+			dayOfWeek,
+			todos: dayTodos ? sortTodos(dayTodos) : { completed: 0, outstanding: 0 }
+		}
 	})
 
-	full.forEach((item, i) => {
-		mapped.forEach((m) => {
-			if (item.date === m.date) {
-				full[i] = { ...item, todos: m.todos }
-			}
-		})
-	})
 	return full
 }
 
