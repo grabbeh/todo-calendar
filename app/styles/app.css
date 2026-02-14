@@ -154,7 +154,7 @@ html,
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Aptos, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -591,6 +591,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .flex {
   display: flex;
 }
@@ -901,6 +905,11 @@ video {
   color: rgb(31 41 55 / var(--tw-text-opacity, 1));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity, 1));
@@ -946,56 +955,6 @@ video {
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-@font-face {
-  font-family: 'Inter';
-
-  font-style: normal;
-
-  font-weight: 500;
-
-  src: url('/fonts/inter-v8-latin-500.eot');
-
-  /* IE9 Compat Modes */
-
-  src: local(''),
-		url('/fonts/inter-v8-latin-500.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('/fonts/inter-v8-latin-500.woff2') format('woff2'),
-		/* Super Modern Browsers */ url('/fonts/inter-v8-latin-500.woff')
-			format('woff'),
-		/* Modern Browsers */ url('/fonts/inter-v8-latin-500.ttf')
-			format('truetype'),
-		/* Safari, Android, iOS */ url('/fonts/inter-v8-latin-500.svg#Inter')
-			format('svg');
-
-  /* Legacy iOS */
-}
-
-/* inter-900 - latin */
-
-@font-face {
-  font-family: 'Inter';
-
-  font-style: normal;
-
-  font-weight: 900;
-
-  src: url('/fonts/inter-v8-latin-900.eot');
-
-  /* IE9 Compat Modes */
-
-  src: local(''),
-		url('/fonts/inter-v8-latin-900.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('/fonts/inter-v8-latin-900.woff2') format('woff2'),
-		/* Super Modern Browsers */ url('/fonts/inter-v8-latin-900.woff')
-			format('woff'),
-		/* Modern Browsers */ url('/fonts/inter-v8-latin-900.ttf')
-			format('truetype'),
-		/* Safari, Android, iOS */ url('/fonts/inter-v8-latin-900.svg#Inter')
-			format('svg');
-
-  /* Legacy iOS */
 }
 
 .hover\:bg-blue-700:hover {
