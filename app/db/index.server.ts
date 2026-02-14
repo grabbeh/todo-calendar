@@ -161,7 +161,7 @@ const getCalendarData = async (user: string, year: number, month: number) => {
 	})
 	let grouped = _.groupBy(supplementedData, 'day')
 
-	let full = Array.from({ length: monthLengths[month - 1] }, (v, i) => {
+	let full = Array.from({ length: new Date(year, month, 0).getDate() }, (v, i) => {
 		let day = i + 1
 		let date = new Date(year, month - 1, day)
 		let dayOfWeekInt = date.getDay()
@@ -255,5 +255,3 @@ export {
 	moveToToday,
 	moveToDate
 }
-
-const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
