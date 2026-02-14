@@ -1,40 +1,38 @@
-import { describe, it, expect } from 'vitest'
-import { sortTodos, Todo } from './index.server'
+// @vitest-environment node
+import { test, expect, vi } from "vitest";
+import { getCalendarData } from "./index.server";
 
-describe('sortTodos', () => {
-  it('should count completed and outstanding todos correctly', () => {
-    const todos = [
-      { status: 'OUTSTANDING', id: '1', text: 'Task 1', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-      { status: 'COMPLETED', id: '2', text: 'Task 2', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-      { status: 'OUTSTANDING', id: '3', text: 'Task 3', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-    ] as Todo[]
+// Mock the table.server.ts module
+vi.mock("./table.server", () => {
+    return {
+        ShopTable: {
+            build: () => ({
+                query: () => ({
+                    entities: () => ({
+                        send: async () => ({ Items: [] }) // Return empty items
+                    })
+                })
+            })
+        },
+        userTransformer: {
+            encode: (val: string) => `USER#${val}`,
+            decode: (val: string) => val.replace(/^USER#/, '')
+        },
+        todoTransformer: {
+            encode: (val: string) => `TODO#${val}`,
+            decode: (val: string) => val.replace(/^TODO#/, '')
+        },
+        User: {},
+        Todo: {}
+    };
+});
 
-    const result = sortTodos(todos)
-    expect(result).toEqual({ completed: 1, outstanding: 2 })
-  })
+test("getCalendarData handles leap years correctly (Feb 2024)", async () => {
+    const data = await getCalendarData("user", 2024, 2);
+    expect(data.length).toBe(29);
+});
 
-  it('should return 0 counts for an empty array', () => {
-    const result = sortTodos([])
-    expect(result).toEqual({ completed: 0, outstanding: 0 })
-  })
-
-  it('should ignore todos with other statuses', () => {
-    const todos = [
-      { status: 'ARCHIVED', id: '1', text: 'Task 1', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-      { status: 'DELETED', id: '2', text: 'Task 2', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-    ] as any[] as Todo[]
-
-    const result = sortTodos(todos)
-    expect(result).toEqual({ completed: 0, outstanding: 0 })
-  })
-
-  it('should be case sensitive and ignore lowercase statuses', () => {
-    const todos = [
-      { status: 'outstanding', id: '1', text: 'Task 1', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-      { status: 'completed', id: '2', text: 'Task 2', year: 2023, month: 1, day: 1, date: new Date(), notes: '' },
-    ] as any[] as Todo[]
-
-    const result = sortTodos(todos)
-    expect(result).toEqual({ completed: 0, outstanding: 0 })
-  })
-})
+test("getCalendarData handles non-leap years correctly (Feb 2023)", async () => {
+    const data = await getCalendarData("user", 2023, 2);
+    expect(data.length).toBe(28);
+});
