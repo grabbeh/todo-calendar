@@ -251,6 +251,7 @@ export {
 	getOutstandingTodosByDate,
 	updateTodo,
 	deleteTodo,
+	sortTodos,
 	getCalendarData,
 	moveToToday,
 	moveToDate
