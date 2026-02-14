@@ -12,6 +12,7 @@ import { DeleteItemCommand } from 'dynamodb-toolbox/entity/actions/delete'
 import { QueryCommand } from 'dynamodb-toolbox/table/actions/query'
 import KSUID from 'ksuid'
 import _ from 'lodash'
+import { getDayOfWeek } from '../utils/date'
 
 export interface User {
 	email: string
@@ -177,16 +178,6 @@ const getCalendarData = async (user: string, year: number, month: number) => {
 	return full
 }
 
-const getDayOfWeek = (int: number) => {
-	if (int === 0) return 'S'
-	if (int === 1) return 'M'
-	if (int === 2) return 'T'
-	if (int === 3) return 'W'
-	if (int === 4) return 'T'
-	if (int === 5) return 'F'
-	if (int === 6) return 'S'
-}
-
 const sortTodos = (todos: Todo[]) => {
 	let outstanding = todos.filter((i: Todo) => i.status === 'OUTSTANDING')
 	let completed = todos.filter((i: Todo) => i.status === 'COMPLETED')
@@ -251,6 +242,7 @@ export {
 	getOutstandingTodosByDate,
 	updateTodo,
 	deleteTodo,
+	sortTodos,
 	getCalendarData,
 	moveToToday,
 	moveToDate

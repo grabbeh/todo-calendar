@@ -18,7 +18,7 @@ export default defineConfig({
       'react-dnd-html5-backend']
   },
   plugins: [
-    remix({
+    !process.env.VITEST && remix({
       future: {
         unstable_optimizeDeps: true,
       },

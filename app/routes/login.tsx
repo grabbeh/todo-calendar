@@ -1,106 +1,107 @@
-import type { ActionFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
+import type { ActionFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useFetcher } from '@remix-run/react'
 import { useRef } from 'react'
 import { login, createUserSession } from '../db/session.server'
 
 export interface User {
-	email: string
-	password: string
+  email: string
+  password: string
 }
 
 export interface Errors {
-	email?: string
-	password?: string
-}	
-
-export const action: ActionFunction = async ({ request }) => {
-	const formData = await request.formData()
-	const { _action } = Object.fromEntries(formData)
-	const email = formData.get('email')
-	const password = formData.get('password')
-
-	// error handling
-	const errors: Errors = {}
-	if (_action === 'login') {
-		if (!formData.get('email')) {
-			errors.email = 'Please provide email!'
-		}
-		if (!formData.get('password')) {
-			errors.password = 'Please provide password!'
-		}
-		if (Object.keys(errors).length > 0) {
-			return json({ errors }, { status: 422 })
-		}
-		try {
-			const user = await login({
-				email: email as string,
-				password: password as string
-			})
-			if (!user) {
-				console.log('No user')
-				return json(
-					{ errors: { email: 'Invalid email or password' } },
-					{ status: 401 }
-				)
-			} else {
-				return createUserSession(user.email, '/todos')
-			}
-		} catch (error) {
-			console.error('Login error:', error)
-			return json(
-				{ errors: { email: 'An unexpected error occurred' } },
-				{ status: 500 }
-			)
-		}
-	}
+  email?: string
+  password?: string
 }
 
-export default function Login() {
-	const fetcher = useFetcher()
-	const formRef = useRef()
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData()
+  const { _action } = Object.fromEntries(formData)
+  const email = formData.get('email')
+  const password = formData.get('password')
 
-	return (
-		<div className='flex justify-center h-screen items-center'>
-			<div>
-				<div className='mb-3 font-bold text-2xl'>Login</div>
-				<fetcher.Form ref={formRef} method='post'>
-					<div>
-						<div className='text-xl'>
-							<label>Email</label>
-						</div>
-						<input
-							className='focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200'
-							type='text'
-							name='email'
-						/>
-					</div>
-					<div>
-						<div className='mt-3 text-xl'>
-							<label>Password</label>
-						</div>
-						<input
-							className='focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200'
-							type='password'
-							name='password'
-						/>
-					</div>
-					<div className='mt-3 flex justify-end'>
-						<button
-							className='bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded'
-							type='submit'
-							name='_action'
-							value='login'
-						>
-							LOGIN
-						</button>
-					</div>
-					{fetcher.data?.errors &&
-						Object.values(fetcher.data?.errors).map((item, i) => (
-							<div>{item}</div>
-						))}
-				</fetcher.Form>
-			</div>
-		</div>
-	)
+  // error handling
+  const errors: Errors = {}
+  if (_action === 'login') {
+    if (typeof email !== 'string' || email.length === 0) {
+      errors.email = 'Please provide email!'
+    }
+    if (typeof password !== 'string' || password.length === 0) {
+      errors.password = 'Please provide password!'
+    }
+    if (Object.keys(errors).length > 0) {
+      return json({ errors }, { status: 422 })
+    }
+    try {
+      const user = await login({
+        email: email as string,
+        password: password as string
+      })
+      if (user === null) {
+        return json(
+          { errors: { email: 'Invalid email or password' } },
+          { status: 401 }
+        )
+      } else {
+        return await createUserSession(user.email, '/todos')
+      }
+    } catch (error) {
+      console.error('Login error:', error)
+      return json(
+        { errors: { email: 'An unexpected error occurred' } },
+        { status: 500 }
+      )
+    }
+  }
+  return null
+}
+
+export default function Login (): JSX.Element {
+  const fetcher = useFetcher<{ errors: Errors }>()
+  const formRef = useRef<HTMLFormElement>(null)
+  const data = fetcher.data as { errors?: Errors } | undefined | null
+
+  return (
+    <div className='flex justify-center h-screen items-center'>
+      <div>
+        <div className='mb-3 font-bold text-2xl'>Login</div>
+        <fetcher.Form ref={formRef} method='post'>
+          <div>
+            <div className='text-xl'>
+              <label>Email</label>
+            </div>
+            <input
+              className='focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200'
+              type='text'
+              name='email'
+            />
+          </div>
+          <div>
+            <div className='mt-3 text-xl'>
+              <label>Password</label>
+            </div>
+            <input
+              className='focus:border-b-2 focus:outline-none focus:border-blue-500 text-lg md:text-2xl appearance-none border-b-2 border-gray-200'
+              type='password'
+              name='password'
+            />
+          </div>
+          <div className='mt-3 flex justify-end'>
+            <button
+              className='bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded'
+              type='submit'
+              name='_action'
+              value='login'
+            >
+              LOGIN
+            </button>
+          </div>
+          {data?.errors !== undefined &&
+            Object.values(data.errors).map((item, i) => (
+              <div key={i}>{item}</div>
+            ))}
+        </fetcher.Form>
+      </div>
+    </div>
+  )
 }

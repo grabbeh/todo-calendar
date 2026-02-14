@@ -33,7 +33,12 @@ const storage = createCookieSessionStorage({
 		// but that doesn't work on localhost for Safari
 		// https://web.dev/when-to-use-local-https/
 		secure: process.env.NODE_ENV === 'production',
-		secrets: [process.env.SESSION_SECRET || 'temporary_secret_for_boot'],
+		secrets: [
+			process.env.SESSION_SECRET ||
+				(process.env.NODE_ENV === 'production'
+					? 'production_secret_placeholder_do_not_use'
+					: 'temporary_secret_for_boot')
+		],
 		sameSite: 'lax',
 		path: '/',
 		maxAge: 60 * 60 * 24 * 30,
@@ -43,11 +48,15 @@ const storage = createCookieSessionStorage({
 
 function checkSessionSecret() {
 	if (!process.env.SESSION_SECRET) {
-		console.warn(
-			'SESSION_SECRET environment variable is not set! Using fallback secret.'
-		)
-		// We no longer throw here to avoid Lambda initialization crashes.
-		// Remix will use the fallback secret provided in createCookieSessionStorage.
+		if (process.env.NODE_ENV === 'production') {
+			throw new Error('SESSION_SECRET environment variable is not set.')
+		} else {
+			console.warn(
+				'SESSION_SECRET environment variable is not set! Using fallback secret.'
+			)
+			// We no longer throw here to avoid Lambda initialization crashes.
+			// Remix will use the fallback secret provided in createCookieSessionStorage.
+		}
 	}
 }
 
