@@ -33,7 +33,7 @@ export interface Todo {
 
 const addTodo = async (todo: Partial<Todo>) => {
 	const { text, year, month, day, user } = todo
-	const date = new Date(year, month - 1, day)
+	const date = new Date(year as number, (month as number) - 1, day as number)
 	const ksuid = await KSUID.random()
 	const id = ksuid.string
 	let updated = await Todo.build(PutItemCommand).item({
@@ -41,7 +41,7 @@ const addTodo = async (todo: Partial<Todo>) => {
 		id,
 		user,
 		userName: user,
-		date,
+		date: date.toISOString(),
 		GSI1pk: user,
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`
 	}).send()
@@ -67,7 +67,7 @@ const moveToToday = async (todo: Partial<Todo>) => {
 	return await Todo.build(UpdateItemCommand).item({
 		id,
 		...values,
-		date: today,
+		date: today.toISOString(),
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
 		user
 	}).send()
@@ -85,7 +85,7 @@ const moveToDate = async ({ id, year, month, day, user }: MoveTodoProps) => {
 	const date = new Date(year, month - 1, day)
 	return await Todo.build(UpdateItemCommand).item({
 		id,
-		date,
+		date: date.toISOString(),
 		GSI1sk: `YEAR${year}#MONTH${month}#DAY${day}#TODO${id}`,
 		user
 	}).send()

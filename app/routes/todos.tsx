@@ -106,7 +106,10 @@ export const action: ActionFunction = async ({ request }) => {
 		if (Object.keys(errors).length > 0) {
 			return json(errors, { status: 422 })
 		}
-		return await addTodo({ ...values, user })
+		const year = Number(formData.get('year'))
+		const month = Number(formData.get('month'))
+		const day = Number(formData.get('day'))
+		return await addTodo({ ...values, year, month, day, user })
 	}
 
 	// form actions
@@ -127,9 +130,9 @@ export const action: ActionFunction = async ({ request }) => {
 	}
 
 	if (_action === 'moveAllToToday') {
-		const year = formData.get('year')
-		const month = formData.get('month')
-		const day = formData.get('day')
+		const year = Number(formData.get('year'))
+		const month = Number(formData.get('month'))
+		const day = Number(formData.get('day'))
 		const outstanding = await getOutstandingTodosByDate(user, year, month, day)
 		outstanding.forEach(async (t: Todo) => {
 			return await moveToToday({ ...t, user })
@@ -141,10 +144,10 @@ export const action: ActionFunction = async ({ request }) => {
 	}
 
 	if (_action === 'droppedOnDate') {
-		const id = formData.get('id')
-		const year = formData.get('year')
-		const month = formData.get('month')
-		const day = formData.get('day')
+		const id = formData.get('id') as string
+		const year = Number(formData.get('year'))
+		const month = Number(formData.get('month'))
+		const day = Number(formData.get('day'))
 		//json({ message: `You dropped ${formData.get('id')}` })
 		return await moveToDate({ id, year, month, day, user })
 	} else {
