@@ -16,16 +16,7 @@ export const meta: MetaFunction = () => {
 }
 
 export function links() {
-	return [
-		{
-			rel: 'preload',
-			as: 'font',
-			href: '/fonts/inter-v8-latin-500.woff2',
-			type: 'font/woff2',
-			crossOrigin: 'anonymous'
-		},
-		{ rel: 'stylesheet', href: styles }
-	]
+	return [{ rel: 'stylesheet', href: styles }]
 }
 
 export default function App() {
@@ -37,7 +28,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body style={{ fontFamily: 'Inter' }}>
+			<body style={{ fontFamily: "'Aptos', sans-serif" }}>
 				<Outlet />
 				<ScrollRestoration />
 				<Scripts />
@@ -56,7 +47,7 @@ export function ErrorBoundary() {
 				<Meta />
 				<Links />
 			</head>
-			<body className='p-8'>
+			<body className='p-8' style={{ fontFamily: "'Aptos', sans-serif" }}>
 				<div className='max-w-xl mx-auto bg-red-50 p-6 rounded-lg border border-red-200'>
 					<h1 className='text-2xl font-bold text-red-800 mb-4'>
 						{isRouteErrorResponse(error)
