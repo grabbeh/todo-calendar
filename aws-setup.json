@@ -9,7 +9,7 @@ Open Search permissions
 				"AWS": "*"
 			},
 			"Action": "es:*",
-			"Resource": "arn:aws:es:eu-west-1:489398316570:domain/calendar-todo/*"
+			"Resource": "arn:aws:es:eu-west-1:<AWS_ACCOUNT_ID>:domain/calendar-todo/*"
 		}
 	]
 }
