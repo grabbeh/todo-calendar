@@ -32,13 +32,26 @@ export const action: ActionFunction = async ({ request }) => {
 		if (Object.keys(errors).length > 0) {
 			return json({ errors }, { status: 422 })
 		}
-		// TODO: try catch
-		const user = await login({ email, password })
-		if (!user) {
-			console.log('No user')
-			return null
-		} else {
-			return createUserSession(user.email, '/todos')
+		try {
+			const user = await login({
+				email: email as string,
+				password: password as string
+			})
+			if (!user) {
+				console.log('No user')
+				return json(
+					{ errors: { email: 'Invalid email or password' } },
+					{ status: 401 }
+				)
+			} else {
+				return createUserSession(user.email, '/todos')
+			}
+		} catch (error) {
+			console.error('Login error:', error)
+			return json(
+				{ errors: { email: 'An unexpected error occurred' } },
+				{ status: 500 }
+			)
 		}
 	}
 }
